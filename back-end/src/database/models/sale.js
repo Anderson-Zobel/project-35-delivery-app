@@ -2,7 +2,7 @@
 const {
   Model
 } = require('sequelize');
-const { User } = require('./user')
+
 module.exports = (sequelize, DataTypes) => {
   class Sale extends Model {
     /**
@@ -11,8 +11,15 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
 
+      Sale.belongsTo(models.User, {
+        foreignKey: 'sellerId',
+        as: 'seller'
+      });
+      Sale.belongsTo(models.User, {
+        foreignKey: 'userId',
+        as: 'client'
+      });
     }
   }
   Sale.init({
@@ -58,14 +65,6 @@ module.exports = (sequelize, DataTypes) => {
     tableName: 'sales',
     underscored: true,
     timestamps: false,
-  });
-  Sale.belongsTo(User, {
-    foreignKey: 'sellerId',
-    as: 'id'
-  });
-  Sale.belongsTo(User, {
-    foreignKey: 'userId',
-    as: 'id'
   });
   return Sale;
 };

@@ -3,9 +3,6 @@ const {
   Model
 } = require('sequelize');
 
-const { Sale } = require('./sale');
-const { Product } = require('./product');
-
 module.exports = (sequelize, DataTypes) => {
   class SaleProduct extends Model {
     /**
@@ -15,6 +12,19 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      models.Sale.belongsToMany(models.Product, {
+        as: 'products',
+        through: SaleProduct,
+        foreignKey: 'saleId',
+        otherKey: 'productId',
+      });
+    
+      models.Product.belongsToMany(models.Sale, {
+        as: 'sales',
+        through: SaleProduct,
+        foreignKey: 'productId',
+        otherKey: 'saleId',
+      })
     }
   }
   SaleProduct.init({
@@ -40,18 +50,5 @@ module.exports = (sequelize, DataTypes) => {
     timestamps: false,
   });
 
-  Sale.belongsToMany(Product, {
-    as: 'products',
-    through: SaleProduct,
-    foreignKey: 'saleId',
-    otherKey: 'productId',
-  });
-
-  Product.belongsToMany(Sale, {
-    as: 'sales',
-    through: SaleProduct,
-    foreignKey: 'productId',
-    otherKey: 'saleId',
-  })
   return SaleProduct;
 };
