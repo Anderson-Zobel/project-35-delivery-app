@@ -1,14 +1,16 @@
 const express = require('express');
+const errorMiddleware = require('../api/middlewares/error')
+const loginRoute = require('./routes/userRoutes');
+require('express-async-errors');
 // multer
-const LoginService = require('./services/loginService');
-
-const loginRoute = new LoginService();
 
 const app = express();
 
-app.get('/login',
-loginRoute.getUser,
-(_req, res) => res.status(418).end());
+app.use(express.json());
+
+app.use('/', loginRoute);
+
+app.use(errorMiddleware);
 
 
 module.exports = app;
