@@ -1,11 +1,13 @@
 const joi = require('joi');
 
 const loginValidation = joi.object({
-  email: joi.string().email().required().empty().messages({
+  email: joi.string().email().required().empty()
+.messages({
     'any.required': '400|"email" is required',
     'string.empty': '400|"email" is not allowed to be empty',
   }),
-  password: joi.string().min(6).required().empty().messages({
+  password: joi.string().min(6).required().empty()
+.messages({
     'string.min': '400|"password" length must be 6 characters long',
     'any.required': '400|"password" is required',
     'string.empty': '400|"password" is not allowed to be empty',
