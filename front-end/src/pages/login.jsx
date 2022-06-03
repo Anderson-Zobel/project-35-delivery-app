@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Navigate from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import '../style/login.css';
 
 export default function Login() {
@@ -26,7 +26,7 @@ export default function Login() {
 
   const handleClick = () => {
     setButtonClicked(true);
-  }
+  };
 
   return (
     <div>
@@ -40,7 +40,7 @@ export default function Login() {
           type="email"
           data-testid="common_login__input-email"
         />
-          Senha
+        Senha
         <input
           placeholder="******"
           name="password"
@@ -58,7 +58,7 @@ export default function Login() {
           Login
         </button>
         {
-        buttonClicked && <Navigate to="/customer-products" />
+          buttonClicked && <Navigate to="/customer-products" />
         }
         <button
           type="button"
