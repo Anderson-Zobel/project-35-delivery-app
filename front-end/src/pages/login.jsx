@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import '../style/login.css';
+import getUser from '../shared/services/api';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -8,7 +9,7 @@ export default function Login() {
   const [buttonClicked, setButtonClicked] = useState(false);
 
   const enableButton = () => {
-    const numeroMinimo = 6;
+    const numeroMinimo = 5;
     const emailRegex = /.+@.+\.com/;
     const verifyEmail = emailRegex.test(email);
     const verifyPassword = password.length > numeroMinimo;
@@ -24,8 +25,11 @@ export default function Login() {
     }
   };
 
-  const handleClick = () => {
+  const handleClick = async () => {
     setButtonClicked(true);
+
+    const response = await getUser({ email, password });
+    return response;
   };
 
   return (
