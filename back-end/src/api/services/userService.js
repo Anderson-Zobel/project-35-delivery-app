@@ -1,11 +1,10 @@
- const { User } = require('../../database/models');
+  const md5 = require('md5');
+const { User } = require('../../database/models');
  const { genToken } = require('./jwtService');
- const md5 = require('md5');
 
 const hashPassword = (password) => md5(password);
 
 const loginService = async (email, userPassword) => {
-    
   const user = await User.findOne({ where: { email } });
   if (!user) return null;
   const hashedPassword = hashPassword(userPassword);
@@ -15,6 +14,6 @@ const loginService = async (email, userPassword) => {
   return {
     ...userData,
     token,
-  }
-}
+  };
+};
 module.exports = loginService;

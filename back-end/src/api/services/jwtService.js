@@ -5,11 +5,10 @@ const SECRET = fs.readFileSync('jwt.evaluation.key', 'utf-8');
 
 const JWT_CONFIG = {
   expiresIn: '1d',
-  algorithm: 'HS256'
-}
+  algorithm: 'HS256',
+};
 
 const genToken = (payload) => jwt.sign(payload, SECRET, JWT_CONFIG);
-
 
 const validateToken = (token) => {
   try {
@@ -17,9 +16,9 @@ const validateToken = (token) => {
   } catch (e) {
     return false;
   }
-}
+};
 
 module.exports = {
   genToken,
   validateToken,
-}
+};
