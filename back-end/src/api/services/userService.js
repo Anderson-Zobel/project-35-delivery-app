@@ -9,7 +9,7 @@ const loginService = async (email, userPassword) => {
   if (!user) return null;
   const hashedPassword = hashPassword(userPassword);
   if (user.password !== hashedPassword) return null;
-  const { password, ...userData } = user.dataValues;
+  const { password, id, ...userData } = user.dataValues;
   const token = genToken(userData);
   return {
     ...userData,
