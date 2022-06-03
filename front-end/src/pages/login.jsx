@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import '../style/login.css';
+import { Alert } from '@mui/material';
 import getUser from '../shared/services/api';
 
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [buttonClicked, setButtonClicked] = useState(false);
+  const [apiError, setApiError] = useState(false);
+  const navigate = useNavigate();
 
   const enableButton = () => {
     const numeroMinimo = 5;
@@ -26,10 +28,13 @@ export default function Login() {
   };
 
   const handleClick = async () => {
-    setButtonClicked(true);
+    // setButtonClicked(true);
 
     const response = await getUser({ email, password });
-    return response;
+    if (response) {
+      navigate('../customer/products', { replace: true });
+    }
+    setApiError(true);
   };
 
   return (
@@ -57,19 +62,22 @@ export default function Login() {
           type="button"
           data-testid="common_login__button-login"
           disabled={ enableButton() }
-          onClick={ handleClick }
+          onClick={ () => handleClick() }
         >
           Login
         </button>
-        {
-          buttonClicked && <Navigate to="/customer-products" />
-        }
-        <button
-          type="button"
-          data-testid="common_login__button-register"
-        >
+        {}
+        <button type="button" data-testid="common_login__button-register">
           Ainda não tenho conta
         </button>
+        {apiError ? (
+          <Alert
+            severity="error"
+            data-testid="common_login__element-invalid-email"
+          >
+            Email e/ou senhas inválidos!
+          </Alert>
+        ) : null}
       </form>
     </div>
   );
