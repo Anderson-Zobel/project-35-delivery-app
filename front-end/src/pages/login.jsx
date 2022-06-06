@@ -27,7 +27,7 @@ export default function Login() {
     }
   };
 
-  const handleClick = async () => {
+  const handleLoginClick = async () => {
     // setButtonClicked(true);
 
     const response = await getUser({ email, password });
@@ -35,6 +35,11 @@ export default function Login() {
       navigate('../customer/products', { replace: true });
     }
     setApiError(true);
+  };
+
+  const handleRegClick = () => {
+    // setButtonClicked(true);
+    navigate('../register', { replace: true });
   };
 
   return (
@@ -62,12 +67,16 @@ export default function Login() {
           type="button"
           data-testid="common_login__button-login"
           disabled={ enableButton() }
-          onClick={ () => handleClick() }
+          onClick={ () => handleLoginClick() }
         >
           Login
         </button>
         {}
-        <button type="button" data-testid="common_login__button-register">
+        <button
+          type="button"
+          data-testid="common_login__button-register"
+          onClick={ () => handleRegClick() }
+        >
           Ainda não tenho conta
         </button>
         {apiError ? (
