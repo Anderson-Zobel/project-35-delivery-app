@@ -18,12 +18,12 @@ export default function Login() {
     return !(verifyEmail && verifyPassword);
   };
 
-  const handleChange = async ({ target: { name, value } }) => {
+  const handleChange = ({ target: { name, value } }) => {
     if (name === 'email') {
-      await setEmail(value);
+      setEmail(value);
     }
     if (name === 'password') {
-      await setPassword(value);
+      setPassword(value);
     }
   };
 
