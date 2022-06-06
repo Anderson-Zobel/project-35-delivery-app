@@ -1,7 +1,11 @@
 import axios from 'axios';
 
+const PORT = process.env.REACT_APP_HOST_API || 'http://localhost:3001';
+
+console.log(PORT)
+
 const api = axios.create({
-  baseURL: 'http://localhost:3009',
+  baseURL: PORT,
 });
 
 const getUser = async ({ email, password }) => {
