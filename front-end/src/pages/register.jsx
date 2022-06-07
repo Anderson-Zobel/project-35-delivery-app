@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../style/login.css';
-import { Alert,  Input} from '@mui/material';
-import { PaperEdited, GridEdited, ButtonEdited} from '../style/Styles-MUI'
+import { Alert, Input } from '@mui/material';
+import { PaperEdited, GridEdited, ButtonEdited } from '../style/Styles-MUI';
 import getUser from '../shared/services/api';
 
 export default function Register() {
@@ -58,16 +58,16 @@ export default function Register() {
           onChange={ handleChange }
           data-testid="common_register__input-name"
         />
-          Email
-          <Input
-            fullWidth
-            placeholder="email"
-            name="email"
-            // value={}
-            onChange={ handleChange }
-            type="email"
-            data-testid="common_register__input-email"
-          />
+        Email
+        <Input
+          fullWidth
+          placeholder="email"
+          name="email"
+          // value={}
+          onChange={ handleChange }
+          type="email"
+          data-testid="common_register__input-email"
+        />
         Senha
         <Input
           fullWidth

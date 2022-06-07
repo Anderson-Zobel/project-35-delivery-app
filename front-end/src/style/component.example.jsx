@@ -1,3 +1,5 @@
+import React from 'react';
+import PropTypes from 'prop-types';
 import { Grid } from '@mui/material';
 
 export default function Gride({ children }) {
@@ -14,3 +16,7 @@ export default function Gride({ children }) {
     </Grid>
   );
 }
+
+Gride.propTypes = {
+  children: PropTypes.element.isRequired,
+};
