@@ -17,9 +17,9 @@ const create = async (req, res, _next) => {
         return res.status(409).json({ error: 'user already exists' });
     }
     return res.status(201).json(user);
-}
+};
 
 module.exports = {
     login,
     create,
-}
+};

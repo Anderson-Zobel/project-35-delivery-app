@@ -16,8 +16,6 @@ user.post(
   nameValidate,
   credentialsValidate,
   userController.create,
-)
-
-
+);
 
 module.exports = user;

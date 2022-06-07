@@ -56,7 +56,9 @@ export default function Login() {
           // value={}
           onChange={ handleChange }
           type="email"
-          data-testid="common_login__input-email"
+          inputProps={ {
+            'data-testid': 'common_login__input-email',
+          } }
         />
         Senha
         <Input
@@ -66,12 +68,16 @@ export default function Login() {
           // value={}
           onChange={ handleChange }
           type="password"
-          data-testid="common_login__input-password"
+          inputProps={ {
+            'data-testid': 'common_login__input-password',
+          } }
         />
         <ButtonEdited
           // classes={ {root: "button-login" }}
           type="button"
-          data-testid="common_login__button-login"
+          inputProps={ {
+            'data-testid': 'common_login__button-login',
+          } }
           disabled={ enableButton() }
           onClick={ () => handleLoginClick() }
         >
@@ -79,7 +85,9 @@ export default function Login() {
         </ButtonEdited>
         {}
         <ButtonEdited
-          data-testid="common_login__button-register"
+          inputProps={ {
+            'data-testid': 'common_login__button-register',
+          } }
           onClick={ () => handleRegClick() }
         >
           Ainda não tenho conta
@@ -87,7 +95,9 @@ export default function Login() {
         {apiError ? (
           <Alert
             severity="error"
-            data-testid="common_login__element-invalid-email"
+            inputProps={ {
+              'data-testid': 'common_login__element-invalid-email',
+            } }
           >
             Email e/ou senhas inválidos!
           </Alert>
