@@ -20,11 +20,7 @@
   width: 100%;
 }
  */
-.button-login  {
- /* background-color: rgba(84, 28, 116, 0.562) !important; */
 
- display: block !important;
- padding: 10px !important;
- margin: auto !important;
-
+#root {
+  background-color: rgba(128, 128, 128, 0.185);
 }

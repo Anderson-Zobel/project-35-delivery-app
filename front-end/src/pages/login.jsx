@@ -77,13 +77,12 @@ export default function Login() {
           Login
         </ButtonEdited>
         {}
-        <Button
-          type="button"
+        <ButtonEdited
           data-testid="common_login__button-register"
           onClick={ () => handleRegClick() }
         >
           Ainda não tenho conta
-        </Button>
+        </ButtonEdited>
         {apiError ? (
           <Alert
             severity="error"
