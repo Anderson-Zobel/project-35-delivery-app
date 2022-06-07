@@ -1,16 +1,8 @@
-import axios from 'axios';
+import apiConfig from './apiConfig';
 
-const PORT = process.env.REACT_APP_HOST_API || 'http://localhost:3001';
-
-console.log(PORT);
-
-const api = axios.create({
-  baseURL: PORT,
-});
-
-const getUser = async ({ email, password }) => {
+export const requestLogin = async ({ email, password }) => {
   try {
-    const { data } = await api.post('/login', { email, password });
+    const { data } = await apiConfig.post('/login', { email, password });
     console.log(data);
     return data;
   } catch (error) {
@@ -18,4 +10,4 @@ const getUser = async ({ email, password }) => {
   }
 };
 
-export default getUser;
+export default { requestLogin };
