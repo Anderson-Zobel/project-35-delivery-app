@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import '../style/login.css';
-import { Alert, Input } from '@mui/material';
-import { PaperEdited, GridEdited, ButtonEdited } from '../style/Styles-MUI';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "../style/login.css";
+import { Alert, Input } from "@mui/material";
+import { PaperEdited, GridEdited, ButtonEdited } from "../style/Styles-MUI";
 // import Grid from '../style/Grid'
 // import getUser from '../shared/services/api';
-import { requestLogin } from '../shared/services/api';
+import { requestLogin } from "../shared/services/api";
 
 export default function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [apiError, setApiError] = useState(false);
   const navigate = useNavigate();
 
@@ -22,10 +22,10 @@ export default function Login() {
   };
 
   const handleChange = ({ target: { name, value } }) => {
-    if (name === 'email') {
+    if (name === "email") {
       setEmail(value);
     }
-    if (name === 'password') {
+    if (name === "password") {
       setPassword(value);
     }
   };
@@ -35,14 +35,14 @@ export default function Login() {
 
     const response = await requestLogin({ email, password });
     if (response) {
-      navigate('../customer/products', { replace: true });
+      navigate("../customer/products", { replace: true });
     }
     setApiError(true);
   };
 
   const handleRegClick = () => {
     // setButtonClicked(true);
-    navigate('../register', { replace: true });
+    navigate("../register", { replace: true });
   };
 
   return (
@@ -54,11 +54,11 @@ export default function Login() {
           placeholder="email"
           name="email"
           // value={}
-          onChange={ handleChange }
+          onChange={handleChange}
           type="email"
-          inputProps={ {
-            'data-testid': 'common_login__input-email',
-          } }
+          inputProps={{
+            "data-testid": "common_login__input-email",
+          }}
         />
         Senha
         <Input
@@ -66,38 +66,32 @@ export default function Login() {
           placeholder="******"
           name="password"
           // value={}
-          onChange={ handleChange }
+          onChange={handleChange}
           type="password"
-          inputProps={ {
-            'data-testid': 'common_login__input-password',
-          } }
+          inputProps={{
+            "data-testid": "common_login__input-password",
+          }}
         />
         <ButtonEdited
           // classes={ {root: "button-login" }}
           type="button"
-          inputProps={ {
-            'data-testid': 'common_login__button-login',
-          } }
-          disabled={ enableButton() }
-          onClick={ () => handleLoginClick() }
+          data-testid="common_login__button-login"
+          disabled={enableButton()}
+          onClick={() => handleLoginClick()}
         >
           Login
         </ButtonEdited>
         {}
         <ButtonEdited
-          inputProps={ {
-            'data-testid': 'common_login__button-register',
-          } }
-          onClick={ () => handleRegClick() }
+          data-testid="common_login__button-register"
+          onClick={() => handleRegClick()}
         >
           Ainda não tenho conta
         </ButtonEdited>
         {apiError ? (
           <Alert
             severity="error"
-            inputProps={ {
-              'data-testid': 'common_login__element-invalid-email',
-            } }
+            data-testid="common_login__element-invalid-email"
           >
             Email e/ou senhas inválidos!
           </Alert>

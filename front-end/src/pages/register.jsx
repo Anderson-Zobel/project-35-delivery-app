@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import '../style/login.css';
-import { Alert, Input } from '@mui/material';
-import { PaperEdited, GridEdited, ButtonEdited } from '../style/Styles-MUI';
-import { requestRegister } from '../shared/services/api';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "../style/login.css";
+import { Alert, Input } from "@mui/material";
+import { PaperEdited, GridEdited, ButtonEdited } from "../style/Styles-MUI";
+import { requestRegister } from "../shared/services/api";
 
 export default function Register() {
-  const [userName, setUserName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [userName, setUserName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [apiError, setApiError] = useState(false);
   const navigate = useNavigate();
 
@@ -24,13 +24,13 @@ export default function Register() {
   };
 
   const handleChange = ({ target: { name, value } }) => {
-    if (name === 'email') {
+    if (name === "email") {
       setEmail(value);
     }
-    if (name === 'password') {
+    if (name === "password") {
       setPassword(value);
     }
-    if (name === 'userName') {
+    if (name === "userName") {
       setUserName(value);
     }
   };
@@ -40,7 +40,7 @@ export default function Register() {
 
     const response = await requestRegister({ name: userName, email, password });
     if (response) {
-      navigate('../customer/products', { replace: true });
+      navigate("../customer/products", { replace: true });
     }
     setApiError(true);
   };
@@ -55,8 +55,10 @@ export default function Register() {
           name="userName"
           placeholder="nome"
           type="text"
-          onChange={ handleChange }
-          data-testid="common_register__input-name"
+          onChange={handleChange}
+          inputProps={{
+            "data-testid": "common_register__input-name",
+          }}
         />
         Email
         <Input
@@ -64,9 +66,11 @@ export default function Register() {
           placeholder="email"
           name="email"
           // value={}
-          onChange={ handleChange }
+          onChange={handleChange}
           type="email"
-          data-testid="common_register__input-email"
+          inputProps={{
+            "data-testid": "common_register__input-email",
+          }}
         />
         Senha
         <Input
@@ -74,19 +78,20 @@ export default function Register() {
           placeholder="******"
           name="password"
           // value={}
-          onChange={ handleChange }
+          onChange={handleChange}
           type="password"
-          data-testid="common_register__input-password"
+          inputProps={{
+            "data-testid": "common_register__input-password",
+          }}
         />
         <ButtonEdited
           type="button"
           data-testid="common_register__button-register"
-          disabled={ enableButton() }
-          onClick={ () => handleClick() }
+          disabled={enableButton()}
+          onClick={() => handleClick()}
         >
           Cadastrar
         </ButtonEdited>
-
         {apiError ? (
           <Alert
             severity="error"
