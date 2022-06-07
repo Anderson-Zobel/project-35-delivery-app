@@ -3,11 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import '../style/login.css';
 import { Alert, Input } from '@mui/material';
 import { PaperEdited, GridEdited, ButtonEdited } from '../style/Styles-MUI';
-// import Grid from '../style/Grid'
-// import getUser from '../shared/services/api';
-import { requestLogin } from '../shared/services/api';
+import { requestRegister } from '../shared/services/api';
 
-export default function Login() {
+export default function Register() {
+  const [userName, setUserName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [apiError, setApiError] = useState(false);
@@ -15,10 +14,13 @@ export default function Login() {
 
   const enableButton = () => {
     const numeroMinimo = 5;
+    const nameNumber = 11;
     const emailRegex = /.+@.+\.com/;
     const verifyEmail = emailRegex.test(email);
     const verifyPassword = password.length > numeroMinimo;
-    return !(verifyEmail && verifyPassword);
+    const verifyName = userName.length > nameNumber;
+
+    return !(verifyEmail && verifyPassword && verifyName);
   };
 
   const handleChange = ({ target: { name, value } }) => {
@@ -28,27 +30,37 @@ export default function Login() {
     if (name === 'password') {
       setPassword(value);
     }
+    if (name === 'userName') {
+      setUserName(value);
+    }
   };
 
-  const handleLoginClick = async () => {
+  const handleClick = async () => {
     // setButtonClicked(true);
 
-    const response = await requestLogin({ email, password });
+    const response = await requestRegister({ name: userName, email, password });
     if (response) {
       navigate('../customer/products', { replace: true });
     }
     setApiError(true);
   };
 
-  const handleRegClick = () => {
-    // setButtonClicked(true);
-    navigate('../register', { replace: true });
-  };
-
   return (
     <GridEdited>
       <PaperEdited>
-        Login
+        <p>Cadastro</p>
+        Nome
+        <Input
+          fullWidth
+          name="userName"
+          placeholder="nome"
+          type="text"
+          onChange={ handleChange }
+          inputProps={ {
+            'data-testid': 'common_register__input-name',
+          } }
+        />
+        Email
         <Input
           fullWidth
           placeholder="email"
@@ -57,7 +69,7 @@ export default function Login() {
           onChange={ handleChange }
           type="email"
           inputProps={ {
-            'data-testid': 'common_login__input-email',
+            'data-testid': 'common_register__input-email',
           } }
         />
         Senha
@@ -69,31 +81,23 @@ export default function Login() {
           onChange={ handleChange }
           type="password"
           inputProps={ {
-            'data-testid': 'common_login__input-password',
+            'data-testid': 'common_register__input-password',
           } }
         />
         <ButtonEdited
-          // classes={ {root: "button-login" }}
           type="button"
-          data-testid="common_login__button-login"
+          data-testid="common_register__button-register"
           disabled={ enableButton() }
-          onClick={ () => handleLoginClick() }
+          onClick={ () => handleClick() }
         >
-          Login
-        </ButtonEdited>
-        {}
-        <ButtonEdited
-          data-testid="common_login__button-register"
-          onClick={ () => handleRegClick() }
-        >
-          Ainda não tenho conta
+          Cadastrar
         </ButtonEdited>
         {apiError ? (
           <Alert
             severity="error"
-            data-testid="common_login__element-invalid-email"
+            data-testid="common_register__element-invalid_register"
           >
-            Email e/ou senhas inválidos!
+            Dados incorretos!
           </Alert>
         ) : null}
       </PaperEdited>
