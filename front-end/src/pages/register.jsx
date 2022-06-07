@@ -5,7 +5,7 @@ import { Alert,  Input} from '@mui/material';
 import { PaperEdited, GridEdited, ButtonEdited} from '../style/Styles-MUI'
 import getUser from '../shared/services/api';
 
-export default function Login() {
+export default function Register() {
   const [userName, setUserName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
