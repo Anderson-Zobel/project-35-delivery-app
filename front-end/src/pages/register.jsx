@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import '../style/login.css';
 import { Alert, Input } from '@mui/material';
 import { PaperEdited, GridEdited, ButtonEdited } from '../style/Styles-MUI';
-import getUser from '../shared/services/api';
+import { requestRegister } from '../shared/services/api';
 
 export default function Register() {
   const [userName, setUserName] = useState('');
@@ -38,7 +38,7 @@ export default function Register() {
   const handleClick = async () => {
     // setButtonClicked(true);
 
-    const response = await getUser({ email, password });
+    const response = await requestRegister({ name: userName, email, password });
     if (response) {
       navigate('../customer/products', { replace: true });
     }

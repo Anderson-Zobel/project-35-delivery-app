@@ -10,4 +10,14 @@ export const requestLogin = async ({ email, password }) => {
   }
 };
 
-export default { requestLogin };
+export const requestRegister = async ({ name, email, password, role = 'costumer' }) => {
+  try {
+    const { data } = await apiConfig.post('/register', { name, email, password, role });
+    console.log(data);
+    return data;
+  } catch (error) {
+    console.log(JSON.stringify(error));
+  }
+};
+
+export default { requestLogin, requestRegister };
