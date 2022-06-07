@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../style/login.css';
-import { Alert, Button, Input, Container, Paper, Box, Dialog} from '@mui/material';
-import { PaperEdited, GridEdited, ButtonEdited} from '../style/Styles-MUI'
+import { Alert, Input } from '@mui/material';
+import { PaperEdited, GridEdited, ButtonEdited } from '../style/Styles-MUI';
 // import Grid from '../style/Grid'
 import getUser from '../shared/services/api';
 
@@ -45,7 +45,7 @@ export default function Login() {
   };
 
   return (
-  <GridEdited>
+    <GridEdited>
       <PaperEdited>
         Login
         <Input
@@ -92,6 +92,6 @@ export default function Login() {
           </Alert>
         ) : null}
       </PaperEdited>
-  </GridEdited>
+    </GridEdited>
   );
 }
