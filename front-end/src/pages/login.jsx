@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../style/login.css';
-import { Alert } from '@mui/material';
+import { Alert, Button, Input, Container, Paper, Box, Dialog} from '@mui/material';
+import { PaperEdited, GridEdited, ButtonEdited} from '../style/Styles-MUI'
+// import Grid from '../style/Grid'
 import getUser from '../shared/services/api';
 
 export default function Login() {
@@ -43,10 +45,11 @@ export default function Login() {
   };
 
   return (
-    <div>
-      <form className="login-component">
+  <GridEdited>
+      <PaperEdited>
         Login
-        <input
+        <Input
+          fullWidth
           placeholder="email"
           name="email"
           // value={}
@@ -55,7 +58,8 @@ export default function Login() {
           data-testid="common_login__input-email"
         />
         Senha
-        <input
+        <Input
+          fullWidth
           placeholder="******"
           name="password"
           // value={}
@@ -63,22 +67,22 @@ export default function Login() {
           type="password"
           data-testid="common_login__input-password"
         />
-        <button
+        <ButtonEdited
+          // classes={ {root: "button-login" }}
           type="button"
           data-testid="common_login__button-login"
           disabled={ enableButton() }
           onClick={ () => handleLoginClick() }
         >
           Login
-        </button>
+        </ButtonEdited>
         {}
-        <button
-          type="button"
+        <ButtonEdited
           data-testid="common_login__button-register"
           onClick={ () => handleRegClick() }
         >
           Ainda não tenho conta
-        </button>
+        </ButtonEdited>
         {apiError ? (
           <Alert
             severity="error"
@@ -87,7 +91,7 @@ export default function Login() {
             Email e/ou senhas inválidos!
           </Alert>
         ) : null}
-      </form>
-    </div>
+      </PaperEdited>
+  </GridEdited>
   );
 }

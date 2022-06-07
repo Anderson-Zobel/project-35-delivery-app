@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../style/login.css';
-import { Alert } from '@mui/material';
+import { Alert,  Input} from '@mui/material';
+import { PaperEdited, GridEdited, ButtonEdited} from '../style/Styles-MUI'
 import getUser from '../shared/services/api';
 
-export default function Login() {
+export default function Register() {
   const [userName, setUserName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -45,20 +46,21 @@ export default function Login() {
   };
 
   return (
-    <div>
-      <form className="login-component">
+    <GridEdited>
+      <PaperEdited>
         <p>Cadastro</p>
         Nome
-        <input
+        <Input
+          fullWidth
           name="userName"
           placeholder="nome"
           type="text"
           onChange={ handleChange }
           data-testid="common_register__input-name"
         />
-        <label htmlFor="email">
           Email
-          <input
+          <Input
+            fullWidth
             placeholder="email"
             name="email"
             // value={}
@@ -66,9 +68,9 @@ export default function Login() {
             type="email"
             data-testid="common_register__input-email"
           />
-        </label>
         Senha
-        <input
+        <Input
+          fullWidth
           placeholder="******"
           name="password"
           // value={}
@@ -76,24 +78,24 @@ export default function Login() {
           type="password"
           data-testid="common_register__input-password"
         />
-        <button
+        <ButtonEdited
           type="button"
           data-testid="common_register__button-register"
           disabled={ enableButton() }
           onClick={ () => handleClick() }
         >
           Cadastrar
-        </button>
+        </ButtonEdited>
 
         {apiError ? (
           <Alert
             severity="error"
             data-testid="common_register__element-invalid_register"
           >
-            Email e/ou senhas inválidos!
+            Dados incorretos!
           </Alert>
         ) : null}
-      </form>
-    </div>
+      </PaperEdited>
+    </GridEdited>
   );
 }
