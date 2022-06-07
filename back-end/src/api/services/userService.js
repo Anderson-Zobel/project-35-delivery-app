@@ -15,5 +15,20 @@ const loginService = async (email, userPassword) => {
     ...userData,
     token,
   };
+
 };
-module.exports = loginService;
+
+const createUser = async (name, email, userPassword, role) => {
+  const userExist = await User.findOne({ where: { name, email } });
+  if (!userExist) {  
+  const password = hashPassword(userPassword);
+  const createdUser = await User.create({ name, email, password, role });
+  return createdUser;
+}
+return  null;
+}
+
+module.exports = {
+  loginService,
+  createUser,
+}
