@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../style/login.css';
-import { Alert, Input } from '@mui/material';
+import { Alert, Input, Button, Paper } from '@mui/material';
 import { PaperEdited, GridEdited, ButtonEdited } from '../style/Styles-MUI';
 // import Grid from '../style/Grid'
 import getUser from '../shared/services/api';
@@ -67,7 +67,7 @@ export default function Login() {
           type="password"
           data-testid="common_login__input-password"
         />
-        <ButtonEdited
+        <Button
           // classes={ {root: "button-login" }}
           type="button"
           data-testid="common_login__button-login"
@@ -75,14 +75,14 @@ export default function Login() {
           onClick={ () => handleLoginClick() }
         >
           Login
-        </ButtonEdited>
+        </Button>
         {}
-        <ButtonEdited
+        <Button
           data-testid="common_login__button-register"
           onClick={ () => handleRegClick() }
         >
           Ainda não tenho conta
-        </ButtonEdited>
+        </Button>
         {apiError ? (
           <Alert
             severity="error"
