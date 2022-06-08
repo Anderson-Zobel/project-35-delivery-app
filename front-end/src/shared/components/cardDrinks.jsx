@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-export default function CardDrinks () {
-    return (
-        <div>bebida</div>
-    )
-};
+export default function CardDrinks() {
+  return (
+    <div>bebida</div>
+  );
+}
