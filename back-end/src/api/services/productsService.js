@@ -6,8 +6,8 @@ const getAllProducts = async () => {
     return null;
   }
   return products;
-}
+};
 
 module.exports = { 
   getAllProducts,
-}
+};
