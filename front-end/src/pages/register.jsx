@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import '../style/login.css';
 import { Alert, Input } from '@mui/material';
 import { PaperEdited, GridEdited, ButtonEdited } from '../style/Styles-MUI';
-import getUser from '../shared/services/api';
+import { requestRegister } from '../shared/services/api';
 
 export default function Register() {
   const [userName, setUserName] = useState('');
@@ -38,7 +38,7 @@ export default function Register() {
   const handleClick = async () => {
     // setButtonClicked(true);
 
-    const response = await getUser({ email, password });
+    const response = await requestRegister({ name: userName, email, password });
     if (response) {
       navigate('../customer/products', { replace: true });
     }
@@ -56,7 +56,9 @@ export default function Register() {
           placeholder="nome"
           type="text"
           onChange={ handleChange }
-          data-testid="common_register__input-name"
+          inputProps={ {
+            'data-testid': 'common_register__input-name',
+          } }
         />
         Email
         <Input
@@ -66,7 +68,9 @@ export default function Register() {
           // value={}
           onChange={ handleChange }
           type="email"
-          data-testid="common_register__input-email"
+          inputProps={ {
+            'data-testid': 'common_register__input-email',
+          } }
         />
         Senha
         <Input
@@ -76,7 +80,9 @@ export default function Register() {
           // value={}
           onChange={ handleChange }
           type="password"
-          data-testid="common_register__input-password"
+          inputProps={ {
+            'data-testid': 'common_register__input-password',
+          } }
         />
         <ButtonEdited
           type="button"
@@ -86,7 +92,6 @@ export default function Register() {
         >
           Cadastrar
         </ButtonEdited>
-
         {apiError ? (
           <Alert
             severity="error"

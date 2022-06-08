@@ -4,7 +4,8 @@ import '../style/login.css';
 import { Alert, Input, Button, Paper } from '@mui/material';
 import { PaperEdited, GridEdited, ButtonEdited } from '../style/Styles-MUI';
 // import Grid from '../style/Grid'
-import getUser from '../shared/services/api';
+// import getUser from '../shared/services/api';
+import { requestLogin } from '../shared/services/api';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -32,7 +33,7 @@ export default function Login() {
   const handleLoginClick = async () => {
     // setButtonClicked(true);
 
-    const response = await getUser({ email, password });
+    const response = await requestLogin({ email, password });
     if (response) {
       navigate('../customer/products', { replace: true });
     }
@@ -55,7 +56,9 @@ export default function Login() {
           // value={}
           onChange={ handleChange }
           type="email"
-          data-testid="common_login__input-email"
+          inputProps={ {
+            'data-testid': 'common_login__input-email',
+          } }
         />
         Senha
         <Input
@@ -65,7 +68,9 @@ export default function Login() {
           // value={}
           onChange={ handleChange }
           type="password"
-          data-testid="common_login__input-password"
+          inputProps={ {
+            'data-testid': 'common_login__input-password',
+          } }
         />
         <Button
           // classes={ {root: "button-login" }}
