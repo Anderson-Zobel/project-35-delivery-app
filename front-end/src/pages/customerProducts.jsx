@@ -17,7 +17,10 @@ export default function CustomerProducts() {
     <>
       <NavBar />
       {products.map((product, index) => <CardDrinks product={ product } key={ index } />)}
-      <Button>
+      <Button
+        sx={ { pr: 0.1, pb: 0.1 } }
+        data-testid="customer_products__checkout-bottom-value"
+      >
         Ver Carrinho: R$
       </Button>
     </>
