@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import NavBar from '../shared/components/navBar';
+import CardDrinks from '../shared/components/cardDrinks';
 import { getProducts } from '../shared/services/api';
 // import CardDrinks from '../shared/components/cardDrinks';
 
@@ -15,10 +16,9 @@ export default function CustomerProducts() {
   }, []);
   console.log(products, 'estado');
   return (
-    <NavBar />
-    // <Container>
-    //   <p>botao  - botao pedido - Usuario - Botao Logout</p>
-    //   <CardDrinks/>
-    // </Container>
+    <>
+      <NavBar />
+      {products.map((product, index) => <CardDrinks product={ product } key={ index } />)}
+    </>
   );
 }
