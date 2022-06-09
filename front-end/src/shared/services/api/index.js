@@ -23,7 +23,6 @@ export const requestRegister = async ({ name, email, password, role = 'costumer'
 export const getProducts = async () => {
   try {
     const { data } = await apiConfig.get('/products');
-    console.log(data);
     return data;
   } catch (error) {
     console.log(JSON.stringify(error));
