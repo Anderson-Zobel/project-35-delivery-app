@@ -11,17 +11,15 @@ import {
   TextField,
 } from '@mui/material';
 
-
-
 export default function CardDrinks({ product }) {
   console.log(product);
   const { name, urlImage, price } = product;
   console.log(name);
   return (
-    <Card variant='outlined' sx={ { maxWidth: 345, display: 'inline-block', m: '1rem' } }>
+    <Card variant="outlined" sx={ { maxWidth: 345, display: 'inline-block', m: '1rem' } }>
       <CardHeader
         title={ name }
-        sx={{ textAlign: 'center' }}
+        sx={ { textAlign: 'center' } }
       />
 
       <CardMedia
@@ -32,7 +30,12 @@ export default function CardDrinks({ product }) {
         sx={ { objectFit: 'scale-down' } }
       />
       <CardContent>
-        <Typography variant="h6" sx={{ textAlign: 'center' }} >{ ` R$ ${ price } ` }</Typography>
+        <Typography
+          variant="h6"
+          sx={ { textAlign: 'center' } }
+        >
+          { ` R$ ${price} ` }
+        </Typography>
         <ButtonGroup>
           <Button>-</Button>
           <TextField width="50" />
