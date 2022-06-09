@@ -11,28 +11,31 @@ import {
   TextField,
 } from '@mui/material';
 
+
+
 export default function CardDrinks({ product }) {
   console.log(product);
-  const { name, id, urlImage, price } = product;
+  const { name, urlImage, price } = product;
   console.log(name);
   return (
-    <Card variant="outlined" sx={ { maxWidth: 345, display: 'inline-block', m: "1rem" } }>
+    <Card variant='outlined' sx={ { maxWidth: 345, display: 'inline-block', m: '1rem' } }>
       <CardHeader
-        title= { name }
+        title={ name }
+        sx={{ textAlign: 'center' }}
       />
-      
+
       <CardMedia
         component="img"
         height="194"
         image={ urlImage }
         alt="Cervejinha"
-        sx= { { objectFit: 'scale-down' } }
+        sx={ { objectFit: 'scale-down' } }
       />
       <CardContent>
-        <Typography>{ price }</Typography>
+        <Typography variant="h6" sx={{ textAlign: 'center' }} >{ ` R$ ${ price } ` }</Typography>
         <ButtonGroup>
           <Button>-</Button>
-          <TextField width="50"/>
+          <TextField width="50" />
           <Button>+</Button>
         </ButtonGroup>
       </CardContent>
