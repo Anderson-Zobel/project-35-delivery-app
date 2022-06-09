@@ -13,29 +13,36 @@ import {
 
 export default function CardDrinks({ product }) {
   console.log(product);
-  const { name, id } = product;
-  console.log(id);
+  const { name, id, urlImage, price } = product;
+  console.log(name);
   return (
-    <Card variant="outlined">
-      <CardHeader>
-        <Typography>{name}</Typography>
-        <CardMedia>imagem do produto</CardMedia>
-        <CardContent>
-          <Typography>preço</Typography>
-          <ButtonGroup>
-            <Button>+</Button>
-            <TextField />
-            <Button>-</Button>
-          </ButtonGroup>
-        </CardContent>
-      </CardHeader>
+    <Card variant="outlined" sx={ { maxWidth: 345, display: 'inline-block', m: "1rem" } }>
+      <CardHeader
+        title= { name }
+      />
+      
+      <CardMedia
+        component="img"
+        height="194"
+        image={ urlImage }
+        alt="Cervejinha"
+        sx= { { objectFit: 'scale-down' } }
+      />
+      <CardContent>
+        <Typography>{ price }</Typography>
+        <ButtonGroup>
+          <Button>-</Button>
+          <TextField width="50"/>
+          <Button>+</Button>
+        </ButtonGroup>
+      </CardContent>
     </Card>
   );
 }
 
 CardDrinks.propTypes = {
   product: PropTypes.objectOf({
-    product: PropTypes.objectOg({
+    product: PropTypes.objectOf({
       id: PropTypes.number,
       name: PropTypes.string,
       price: PropTypes.string,
