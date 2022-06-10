@@ -22,6 +22,9 @@ export default function CardDrinks({ product }) {
   function decrementCount() {
     const countHandler = count - 1;
     setCount(countHandler);
+    if (count <= 0) {
+      setCount(0);
+    }
   }
 
   function handleChange({ target }) {
