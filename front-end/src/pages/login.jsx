@@ -31,17 +31,16 @@ export default function Login() {
   };
 
   const handleLoginClick = async () => {
-    // setButtonClicked(true);
-
     const response = await requestLogin({ email, password });
     if (response) {
+      const userData = JSON.stringify(response);
+      localStorage.setItem('user', userData);
       navigate('../customer/products', { replace: true });
     }
     setApiError(true);
   };
 
   const handleRegClick = () => {
-    // setButtonClicked(true);
     navigate('../register', { replace: true });
   };
 
