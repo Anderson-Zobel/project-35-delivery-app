@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { Fab } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { useNavigate } from 'react-router-dom';
+import Context from '../shared/contexts/Context';
 import NavBar from '../shared/components/navBar';
 import CardDrinks from '../shared/components/cardDrinks';
 import { getProducts } from '../shared/services/api';
@@ -16,6 +18,25 @@ const style = {
 
 export default function CustomerProducts() {
   const [products, setProducts] = useState([]);
+  const { setTotalAmount,
+    totalAmount, userCart, disableCartButton } = useContext(Context);
+  const navigate = useNavigate();
+
+  function getTotalAmount() {
+    let total = 0;
+    if (userCart) {
+      userCart.forEach((product) => {
+        const totalProduct = product.count * product.price;
+        total += totalProduct;
+      });
+    }
+    setTotalAmount(total.toFixed(2).replace('.', ','));
+    return totalAmount;
+  }
+
+  function handleClick() {
+    navigate('../customer/checkout', { replace: true });
+  }
   useEffect(() => {
     async function fetchAPI() {
       const response = await getProducts();
@@ -26,17 +47,25 @@ export default function CustomerProducts() {
   return (
     <>
       <NavBar />
-      {products.map((product, index) => <CardDrinks product={ product } key={ index } />)}
+      {products.map((product, index) => (
+        <CardDrinks product={ product } key={ index } />
+      ))}
       <Fab
         variant="extended"
         // sx={ { pr: 0.1, pb: 0.1, position: 'fixed' } }
         style={ style }
-        data-testid="customer_products__checkout-bottom-value"
+        data-testid="customer_products__button-cart"
+        onClick={ () => handleClick() }
+        disabled={ disableCartButton }
       >
         <ShoppingCartIcon />
-        Ver Carrinho: R$
+        <span>
+          Ver carrinho R$:
+        </span>
+        <span data-testid="customer_products__checkout-bottom-value">
+          {getTotalAmount()}
+        </span>
       </Fab>
-
     </>
   );
 }

@@ -4,6 +4,8 @@ import Context from '../contexts/Context';
 
 export default function Provider({ children }) {
   const [userCart, setUserCart] = useState([]);
+  const [totalAmount, setTotalAmount] = useState();
+  const [disableCartButton, setDisableCartButton] = useState(true);
 
   const addProductCart = (id, name, count, price) => {
     const cart = [...userCart];
@@ -14,6 +16,9 @@ export default function Provider({ children }) {
       item.count = count;
     }
     setUserCart(cart);
+    const cartStringFy = JSON.stringify(cart);
+    localStorage.setItem('carrinho', cartStringFy);
+    setDisableCartButton(false);
   };
 
   const removeProductCart = (id, count) => {
@@ -22,9 +27,19 @@ export default function Provider({ children }) {
     if (item && item.count > 1 && count !== 0) {
       item.count = count;
       setUserCart(cart);
+      const cartStringFy = JSON.stringify(cart);
+
+      localStorage.setItem('carrinho', cartStringFy);
     } else {
       const cartFiltered = cart.filter((p) => p.id !== id);
       setUserCart(cartFiltered);
+      if (cartFiltered.length === 0) {
+        setDisableCartButton(true);
+        localStorage.removeItem('carrinho');
+      } else {
+        const cartStringFy = JSON.stringify(cartFiltered);
+        localStorage.setItem('carrinho', cartStringFy);
+      }
     }
   };
 
@@ -36,13 +51,13 @@ export default function Provider({ children }) {
     addProductCart,
     removeProductCart,
     clearCart,
+    userCart,
+    totalAmount,
+    setTotalAmount,
+    disableCartButton,
   };
 
-  return (
-    <Context.Provider value={ myProvider }>
-      {children}
-    </Context.Provider>
-  );
+  return <Context.Provider value={ myProvider }>{children}</Context.Provider>;
 }
 
 Provider.propTypes = {
