@@ -9,6 +9,16 @@ import {
 } from '@mui/material';
 // import { Link } from "react-router-dom";
 
+function handleClick() {
+  localStorage.removeItem('user');
+}
+
+function getName() {
+  const user = localStorage.getItem('user');
+  const userObj = JSON.parse(user);
+  return userObj.name;
+}
+
 export default function NavBar() {
   return (
     <AppBar position="static">
@@ -40,11 +50,9 @@ export default function NavBar() {
           component="div"
           data-testid="customer_products__element-navbar-user-full-name"
         >
-          {' '}
-          Nome Cliente
-          {' '}
+          {getName()}
         </Typography>
-        <Button color="inherit" sx={ { pl: 3 } }>
+        <Button color="inherit" sx={ { pl: 3 } } onClick={ () => handleClick() }>
           <Link
             href="/login"
             color="inherit"
