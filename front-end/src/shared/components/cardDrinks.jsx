@@ -10,13 +10,12 @@ import {
   ButtonGroup,
   TextField,
 } from '@mui/material';
-import Context from '../contexts/Context'
+import Context from '../contexts/Context';
 
 export default function CardDrinks({ product }) {
-  const { addProductCart, removeProductCart } = useContext(Context)
+  const { addProductCart, removeProductCart } = useContext(Context);
   const { id, name, urlImage, price } = product;
   const [count, setCount] = useState(0);
-
 
   function incrementCount() {
     const countHandler = count + 1;
@@ -34,16 +33,15 @@ export default function CardDrinks({ product }) {
   }
 
   function handleChange({ target }) {
-
-    const value = target.value.replace(/\D/g, "0");
-    if ( typeof value === 'string') {
+    const value = target.value.replace(/\D/g, '0');
+    if (typeof value === 'string') {
       setCount(+value);
     }
-    if( +value === 0) {
-      removeProductCart(id, +value)
+    if (+value === 0) {
+      removeProductCart(id, +value);
     }
-    if ( +value >= 1) {
-      setCount(+value)      
+    if (+value >= 1) {
+      setCount(+value);
       addProductCart(id, name, +value, price);
     }
   }

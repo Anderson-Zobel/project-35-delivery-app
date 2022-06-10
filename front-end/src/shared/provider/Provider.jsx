@@ -6,31 +6,31 @@ export default function Provider({ children }) {
   const [userCart, setUserCart] = useState([]);
 
   const addProductCart = (id, name, count, price) => {
-    const cart = [...userCart ] 
-    const item = cart.find((p) => p.id === id); 
+    const cart = [...userCart];
+    const item = cart.find((p) => p.id === id);
     if (!item) {
-      cart.push({ id, name, count , price })
+      cart.push({ id, name, count, price });
     } else {
-      item.count = count
+      item.count = count;
     }
-    setUserCart(cart);    
+    setUserCart(cart);
   };
 
   const removeProductCart = (id, count) => {
-    const cart = [...userCart ] 
-    const item = cart.find((p) => p.id === id); 
+    const cart = [...userCart];
+    const item = cart.find((p) => p.id === id);
     if (item && item.count > 1 && count !== 0) {
-      item.count = count
-      setUserCart(cart)       
+      item.count = count;
+      setUserCart(cart);
     } else {
-      const cartFiltered = cart.filter((p) => p.id !== id )
-      setUserCart(cartFiltered)
-    } 
-  }
+      const cartFiltered = cart.filter((p) => p.id !== id);
+      setUserCart(cartFiltered);
+    }
+  };
 
   const clearCart = () => {
     setUserCart([]);
-  } 
+  };
 
   const myProvider = {
     addProductCart,

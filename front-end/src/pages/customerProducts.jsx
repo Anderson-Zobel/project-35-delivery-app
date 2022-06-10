@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Fab } from '@mui/material';
+import { Fab } from '@mui/material';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import NavBar from '../shared/components/navBar';
 import CardDrinks from '../shared/components/cardDrinks';
 import { getProducts } from '../shared/services/api';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 const style = {
   margin: 0,
@@ -30,10 +30,10 @@ export default function CustomerProducts() {
       <Fab
         variant="extended"
         // sx={ { pr: 0.1, pb: 0.1, position: 'fixed' } }
-        style={style}
+        style={ style }
         data-testid="customer_products__checkout-bottom-value"
       >
-       <ShoppingCartIcon/>
+        <ShoppingCartIcon />
         Ver Carrinho: R$
       </Fab>
 
