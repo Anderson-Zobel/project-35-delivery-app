@@ -50,7 +50,7 @@ export default function CardDrinks({ product }) {
           sx={ { textAlign: 'center' } }
           data-testid={ `customer_products__element-card-price-${id}` }
         >
-          { ` R$ ${price} ` }
+          { price.replace('.', ',') }
         </Typography>
         <ButtonGroup sx={ { display: 'flex', justifyContent: 'center' } }>
           <Button
