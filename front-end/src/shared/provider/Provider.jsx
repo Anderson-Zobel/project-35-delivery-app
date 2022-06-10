@@ -5,13 +5,37 @@ import Context from '../contexts/Context';
 export default function Provider({ children }) {
   const [userCart, setUserCart] = useState([]);
 
-  const shoppingCart = (count, id) => {
-    const newItem = { id, quantity: count };
-    setUserCart([...userCart, newItem]);
+  const addProductCart = (id, name, count, price) => {
+    const cart = [...userCart ] 
+    const item = cart.find((p) => p.id === id); 
+    if (!item) {
+      cart.push({ id, name, count , price })
+    } else {
+      item.count = count
+    }
+    setUserCart(cart);    
   };
 
+  const removeProductCart = (id, count) => {
+    const cart = [...userCart ] 
+    const item = cart.find((p) => p.id === id); 
+    if (item && item.count > 1 && count !== 0) {
+      item.count = count
+      setUserCart(cart)       
+    } else {
+      const cartFiltered = cart.filter((p) => p.id !== id )
+      setUserCart(cartFiltered)
+    } 
+  }
+
+  const clearCart = () => {
+    setUserCart([]);
+  } 
+
   const myProvider = {
-    shoppingCart,
+    addProductCart,
+    removeProductCart,
+    clearCart,
   };
 
   return (
