@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import {
   Card,
@@ -10,25 +10,42 @@ import {
   ButtonGroup,
   TextField,
 } from '@mui/material';
+import Context from '../contexts/Context'
 
 export default function CardDrinks({ product }) {
+  const { addProductCart, removeProductCart } = useContext(Context)
   const { id, name, urlImage, price } = product;
   const [count, setCount] = useState(0);
+
 
   function incrementCount() {
     const countHandler = count + 1;
     setCount(countHandler);
+    addProductCart(id, name, countHandler, price);
   }
+
   function decrementCount() {
     const countHandler = count - 1;
     setCount(countHandler);
     if (count <= 0) {
       setCount(0);
     }
+    removeProductCart(id, countHandler);
   }
 
   function handleChange({ target }) {
-    setCount(+target.value);
+
+    const value = target.value.replace(/\D/g, "0");
+    if ( typeof value === 'string') {
+      setCount(+value);
+    }
+    if( +value === 0) {
+      removeProductCart(id, +value)
+    }
+    if ( +value >= 1) {
+      setCount(+value)      
+      addProductCart(id, name, +value, price);
+    }
   }
 
   return (
@@ -66,6 +83,7 @@ export default function CardDrinks({ product }) {
             sx={ { width: 50 } }
             value={ count }
             inputProps={ {
+              type: 'tel',
               onChange: handleChange,
               'data-testid': `customer_products__input-card-quantity-${id}`,
             } }
