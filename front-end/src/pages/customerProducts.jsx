@@ -1,11 +1,11 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import { Fab } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useNavigate } from 'react-router-dom';
 import Context from '../shared/contexts/Context';
 import NavBar from '../shared/components/navBar';
 import CardDrinks from '../shared/components/cardDrinks';
-import { getProducts } from '../shared/services/api';
+// import { getProducts } from '../shared/services/api';
 
 const style = {
   margin: 0,
@@ -17,33 +17,32 @@ const style = {
 };
 
 export default function CustomerProducts() {
-  const [products, setProducts] = useState([]);
-  const { setTotalAmount,
-    totalAmount, userCart, disableCartButton } = useContext(Context);
+  // const [products, setProducts] = useState([]);
+  const { disableCartButton, products, getTotalAmount } = useContext(Context);
   const navigate = useNavigate();
 
-  function getTotalAmount() {
-    let total = 0;
-    if (userCart) {
-      userCart.forEach((product) => {
-        const totalProduct = product.count * product.price;
-        total += totalProduct;
-      });
-    }
-    setTotalAmount(total.toFixed(2).replace('.', ','));
-    return totalAmount;
-  }
+  // function getTotalAmount() {
+  //   let total = 0;
+  //   if (userCart) {
+  //     userCart.forEach((product) => {
+  //       const totalProduct = product.count * product.price;
+  //       total += totalProduct;
+  //     });
+  //   }
+  //   setTotalAmount(total.toFixed(2).replace('.', ','));
+  //   return totalAmount;
+  // }
 
   function handleClick() {
     navigate('../customer/checkout', { replace: true });
   }
-  useEffect(() => {
-    async function fetchAPI() {
-      const response = await getProducts();
-      setProducts(response);
-    }
-    fetchAPI();
-  }, []);
+  // useEffect(() => {
+  //   async function fetchAPI() {
+  //     const response = await getProducts();
+  //     setProducts(response);
+  //   }
+  //   fetchAPI();
+  // }, []);
   return (
     <>
       <NavBar />
