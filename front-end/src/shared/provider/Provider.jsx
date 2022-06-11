@@ -1,11 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Context from '../contexts/Context';
+import { getProducts } from '../../shared/services/api';
 
 export default function Provider({ children }) {
+  const [products, setProducts] = useState([]);
   const [userCart, setUserCart] = useState([]);
   const [totalAmount, setTotalAmount] = useState();
   const [disableCartButton, setDisableCartButton] = useState(true);
+
+  useEffect(() => {
+    async function fetchAPI() {
+      const response = await getProducts();
+      setProducts(response);
+    }
+    fetchAPI();
+  }, []);
+
+  function getTotalAmount() {
+    let total = 0;
+    if (userCart) {
+      userCart.forEach((product) => {
+        const totalProduct = product.count * product.price;
+        total += totalProduct;
+      });
+    }
+    setTotalAmount(total.toFixed(2).replace('.', ','));
+    return totalAmount;
+  }
 
   const addProductCart = (id, name, count, price) => {
     const cart = [...userCart];
@@ -55,6 +77,8 @@ export default function Provider({ children }) {
     totalAmount,
     setTotalAmount,
     disableCartButton,
+    products,
+    getTotalAmount,
   };
 
   return <Context.Provider value={ myProvider }>{children}</Context.Provider>;
