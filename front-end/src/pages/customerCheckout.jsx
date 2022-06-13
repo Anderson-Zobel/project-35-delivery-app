@@ -1,14 +1,14 @@
-import React, { useContext } from "react";
-import Context from "../shared/contexts/Context";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
-import NavBar from "../shared/components/navBar";
-import { Box, Button } from "@mui/material";
+import React, { useContext } from 'react';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+import { Box, Button } from '@mui/material';
+import NavBar from '../shared/components/navBar';
+import Context from '../shared/contexts/Context';
 
 const rows = [];
 
@@ -18,9 +18,9 @@ export default function CustomerCheckout() {
   return (
     <>
       <NavBar />
-      <Box sx={{ width: 700, display: "flex", justifyContent: "center" }}>
-        <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
+      <Box sx={ { width: 700, display: 'flex', justifyContent: 'center' } }>
+        <TableContainer component={ Paper }>
+          <Table sx={ { minWidth: 650 } } size="small" aria-label="a dense table">
             <TableHead>
               <TableRow>
                 <TableCell>Item</TableCell>
@@ -34,45 +34,46 @@ export default function CustomerCheckout() {
             <TableBody>
               {userCart.map((item, index) => (
                 <TableRow
-                  key={userCart.name}
-                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                  key={ userCart.name }
+                  sx={ { '&:last-child td, &:last-child th': { border: 0 } } }
                 >
                   <TableCell
                     align="right"
-                    data-testid={`customer_checkout__element-order-table-item-number-${index}`}
+                    data-testid={ `customer_checkout__element-
+                    order-table-item-number-${i}` }
                   >
                     {index + 1}
                   </TableCell>
                   <TableCell
                     component="th"
                     scope="row"
-                    data-testid={`customer_checkout__element-order-table-name-${index}`}
+                    data-testid={ `customer_checkout__element-order-table-name-${index}` }
                   >
                     {item.name}
                   </TableCell>
                   <TableCell
                     align="right"
-                    data-testid={`customer_checkout__element-order-table-quantity-${index}`}
+                    data-testid={ `customer_checkout__element-order-table-quantity-${index}` }
                   >
                     {item.count}
                   </TableCell>
                   <TableCell
                     align="right"
-                    data-testid={`customer_checkout__element-order-table-unit-price-${index}`}
+                    data-testid={ `customer_checkout__element-order-table-unit-price-${index}` }
                   >
                     {item.price}
                   </TableCell>
                   <TableCell
                     align="right"
-                    data-testid={`customer_checkout__element-order-table-sub-total-${index}`}
+                    data-testid={ `customer_checkout__element-order-table-sub-total-${index}` }
                   >
                     {(item.price * item.count).toFixed(2)}
                   </TableCell>
                   <TableCell
                     align="right"
-                    data-testid={`customer_checkout__element-order-table-remove-${index}`}
+                    data-testid={ `customer_checkout__element-order-table-remove-${index}` }
                   >
-                    <Button onClick={() => removeProductsById(item.id)}>
+                    <Button onClick={ () => removeProductsById(item.id) }>
                       Remover
                     </Button>
                   </TableCell>
@@ -82,10 +83,10 @@ export default function CustomerCheckout() {
           </Table>
         </TableContainer>
       </Box>
-        <Box sx={{backgroundColor: 'green', width: '700px', display: "flex", justifyContent: "center"}}>
-          Total: R$
-          <span data-testid="customer_checkout__element-order-total-price">{getTotalAmount()}</span>
-        </Box>
+      <Box sx={ { backgroundColor: 'green', width: '700px', display: 'flex', justifyContent: 'center' } }>
+        Total: R$
+        <span data-testid="customer_checkout__element-order-total-price">{getTotalAmount()}</span>
+      </Box>
     </>
   );
 }

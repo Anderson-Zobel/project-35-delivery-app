@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
-import Context from "../contexts/Context";
-import { getProducts } from "../../shared/services/api";
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import Context from '../contexts/Context';
+import { getProducts } from '../services/api';
 
 export default function Provider({ children }) {
   const [products, setProducts] = useState([]);
@@ -25,7 +25,7 @@ export default function Provider({ children }) {
         total += totalProduct;
       });
     }
-    setTotalAmount(total.toFixed(2).replace(".", ","));
+    setTotalAmount(total.toFixed(2).replace('.', ','));
     return totalAmount;
   }
 
@@ -39,7 +39,7 @@ export default function Provider({ children }) {
     }
     setUserCart(cart);
     const cartStringFy = JSON.stringify(cart);
-    localStorage.setItem("carrinho", cartStringFy);
+    localStorage.setItem('carrinho', cartStringFy);
     setDisableCartButton(false);
   };
 
@@ -51,16 +51,16 @@ export default function Provider({ children }) {
       setUserCart(cart);
       const cartStringFy = JSON.stringify(cart);
 
-      localStorage.setItem("carrinho", cartStringFy);
+      localStorage.setItem('carrinho', cartStringFy);
     } else {
       const cartFiltered = cart.filter((p) => p.id !== id);
       setUserCart(cartFiltered);
       if (cartFiltered.length === 0) {
         setDisableCartButton(true);
-        localStorage.removeItem("carrinho");
+        localStorage.removeItem('carrinho');
       } else {
         const cartStringFy = JSON.stringify(cartFiltered);
-        localStorage.setItem("carrinho", cartStringFy);
+        localStorage.setItem('carrinho', cartStringFy);
       }
     }
   };
@@ -85,10 +85,10 @@ export default function Provider({ children }) {
     disableCartButton,
     products,
     getTotalAmount,
-    removeProductsById
+    removeProductsById,
   };
 
-  return <Context.Provider value={myProvider}>{children}</Context.Provider>;
+  return <Context.Provider value={ myProvider }>{children}</Context.Provider>;
 }
 
 Provider.propTypes = {
