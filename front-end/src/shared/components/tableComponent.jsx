@@ -10,6 +10,8 @@ import {
 } from '@mui/material';
 import Context from '../contexts/Context';
 
+const testId = 'customer_checkout__element-order-table-';
+
 export default function TableHeader() {
   const { removeProductsById, userCart } = useContext(Context);
   return (
@@ -33,43 +35,38 @@ export default function TableHeader() {
             >
               <TableCell
                 align="right"
-                data-testid={ `customer_checkout__element-
-                order-table-item-number-${index}` }
+                data-testid={ `${testId}item-number-${index}` }
               >
                 {index + 1}
               </TableCell>
               <TableCell
                 component="th"
                 scope="row"
-                data-testid={ `customer_checkout__
-                element-order-table-name-${index}` }
+                data-testid={ `${testId}name-${index}` }
               >
                 {item.name}
               </TableCell>
               <TableCell
                 align="right"
-                data-testid={ `customer_checkout__
-                element-order-table-quantity-${index}` }
+                data-testid={ `${testId}quantity-${index}` }
               >
                 {item.count}
               </TableCell>
               <TableCell
                 align="right"
-                data-testid={ `customer_checkout__
-                element-order-table-unit-price-${index}` }
+                data-testid={ `${testId}unit-price-${index}` }
               >
-                {item.price}
+                {item.price.replace('.', ',')}
               </TableCell>
               <TableCell
                 align="right"
-                data-testid={ `customer_checkout__
-                element-order-table-sub-total-${index}` }
+                data-testid={ `${testId}sub-total-${index}` }
               >
-                {(item.price * item.count).toFixed(2)}
+                {(item.price * item.count).toFixed(2).replace('.', ',')}
               </TableCell>
               <TableCell
                 align="right"
-                data-testid={ `customer_checkout__element-order-table-remove-${index}` }
+                data-testid={ `${testId}remove-${index}` }
               >
                 <Button onClick={ () => removeProductsById(item.id) }>
                   Remover
