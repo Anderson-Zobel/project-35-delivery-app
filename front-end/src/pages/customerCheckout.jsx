@@ -1,92 +1,72 @@
 import React, { useContext } from 'react';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-import { Box, Button } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import {
+  Button,
+  Container,
+  Paper } from '@mui/material';
 import NavBar from '../shared/components/navBar';
 import Context from '../shared/contexts/Context';
-
-const rows = [];
+import TableComponent from '../shared/components/tableComponent';
 
 export default function CustomerCheckout() {
-  const { userCart, removeProductsById, getTotalAmount } = useContext(Context);
+  const { getTotalAmount } = useContext(Context);
+  const navigate = useNavigate();
+
+  function handleClick() {
+    navigate('../customer/orders/:id', { replace: true });
+  }
 
   return (
     <>
       <NavBar />
-      <Box sx={ { width: 700, display: 'flex', justifyContent: 'center' } }>
-        <TableContainer component={ Paper }>
-          <Table sx={ { minWidth: 650 } } size="small" aria-label="a dense table">
-            <TableHead>
-              <TableRow>
-                <TableCell>Item</TableCell>
-                <TableCell align="right">Descrição</TableCell>
-                <TableCell align="right">Quantidade</TableCell>
-                <TableCell align="right">Valor Unitário</TableCell>
-                <TableCell align="right">Sub-total</TableCell>
-                <TableCell align="right">Remover Item</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {userCart.map((item, index) => (
-                <TableRow
-                  key={ userCart.name }
-                  sx={ { '&:last-child td, &:last-child th': { border: 0 } } }
-                >
-                  <TableCell
-                    align="right"
-                    data-testid={ `customer_checkout__element-
-                    order-table-item-number-${i}` }
-                  >
-                    {index + 1}
-                  </TableCell>
-                  <TableCell
-                    component="th"
-                    scope="row"
-                    data-testid={ `customer_checkout__element-order-table-name-${index}` }
-                  >
-                    {item.name}
-                  </TableCell>
-                  <TableCell
-                    align="right"
-                    data-testid={ `customer_checkout__element-order-table-quantity-${index}` }
-                  >
-                    {item.count}
-                  </TableCell>
-                  <TableCell
-                    align="right"
-                    data-testid={ `customer_checkout__element-order-table-unit-price-${index}` }
-                  >
-                    {item.price}
-                  </TableCell>
-                  <TableCell
-                    align="right"
-                    data-testid={ `customer_checkout__element-order-table-sub-total-${index}` }
-                  >
-                    {(item.price * item.count).toFixed(2)}
-                  </TableCell>
-                  <TableCell
-                    align="right"
-                    data-testid={ `customer_checkout__element-order-table-remove-${index}` }
-                  >
-                    <Button onClick={ () => removeProductsById(item.id) }>
-                      Remover
-                    </Button>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </Box>
-      <Box sx={ { backgroundColor: 'green', width: '700px', display: 'flex', justifyContent: 'center' } }>
-        Total: R$
-        <span data-testid="customer_checkout__element-order-total-price">{getTotalAmount()}</span>
-      </Box>
+      <Container
+        container
+        spacing={ 0 }
+        direction="column"
+        alignItems="center"
+        justifyContent="center"
+        style={ { minHeight: '100vh', marginTop: '2rem' } }
+      >
+        <Paper
+          sx={ {
+            // marginTop: '2rem',
+            padding: '2rem',
+            mr: 2 } }
+        >
+          <TableComponent />
+          <Container
+            sx={ {
+              backgroundColor: 'green',
+              width: '200px',
+              height: '50px',
+              display: 'flex',
+              flexWrap: 'wrap',
+              justifyContent: 'right',
+              // flexDirection: 'column',
+              // alignContent: 'center',
+              alignItems: 'center',
+              color: 'white',
+              mr: 0,
+              mt: 1,
+            } }
+          >
+            <span>Total: R$</span>
+            <span
+              data-testid="customer_checkout__element-order-total-price"
+            >
+              {getTotalAmount()}
+            </span>
+          </Container>
+        </Paper>
+        <Paper sx={ { padding: '2rem', mr: 2, mt: 2 } }>
+          <Button
+            data-testid="customer_checkout__button-submit-order"
+            onClick={ () => handleClick() }
+          >
+            Finalizar Pedido
+          </Button>
+        </Paper>
+      </Container>
     </>
   );
 }
