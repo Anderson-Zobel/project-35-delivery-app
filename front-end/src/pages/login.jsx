@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../style/login.css';
-import { Alert, Input } from '@mui/material';
-import { PaperEdited, GridEdited, ButtonEdited } from '../style/Styles-MUI';
+import { Alert, Input, Button } from '@mui/material';
+import { PaperEdited, GridEdited } from '../style/Styles-MUI';
 // import Grid from '../style/Grid'
 // import getUser from '../shared/services/api';
 import { requestLogin } from '../shared/services/api';
@@ -31,17 +31,16 @@ export default function Login() {
   };
 
   const handleLoginClick = async () => {
-    // setButtonClicked(true);
-
     const response = await requestLogin({ email, password });
     if (response) {
+      const userData = JSON.stringify(response);
+      localStorage.setItem('user', userData);
       navigate('../customer/products', { replace: true });
     }
     setApiError(true);
   };
 
   const handleRegClick = () => {
-    // setButtonClicked(true);
     navigate('../register', { replace: true });
   };
 
@@ -72,7 +71,7 @@ export default function Login() {
             'data-testid': 'common_login__input-password',
           } }
         />
-        <ButtonEdited
+        <Button
           // classes={ {root: "button-login" }}
           type="button"
           data-testid="common_login__button-login"
@@ -80,14 +79,14 @@ export default function Login() {
           onClick={ () => handleLoginClick() }
         >
           Login
-        </ButtonEdited>
+        </Button>
         {}
-        <ButtonEdited
+        <Button
           data-testid="common_login__button-register"
           onClick={ () => handleRegClick() }
         >
           Ainda não tenho conta
-        </ButtonEdited>
+        </Button>
         {apiError ? (
           <Alert
             severity="error"

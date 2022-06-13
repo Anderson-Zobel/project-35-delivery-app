@@ -18,4 +18,7 @@ user.post(
   userController.create,
 );
 
+user.get('/seller',
+  userController.getSellers);
+
 module.exports = user;
