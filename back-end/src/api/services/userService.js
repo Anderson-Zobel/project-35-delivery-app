@@ -27,7 +27,12 @@ const createUser = async (name, email, userPassword, role) => {
   return null;
 };
 
+const findSellers = async () => User.findAll({
+  where: { role: 'seller' }, attributes: { exclude: ['password'] },
+});
+
 module.exports = {
   loginService,
   createUser,
+  findSellers,
 };
