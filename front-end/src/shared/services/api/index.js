@@ -27,4 +27,13 @@ export const getProducts = async () => {
   }
 };
 
+export const getSellers = async () => {
+  try {
+    const { data } = await apiConfig.get('/seller');
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export default { requestLogin, requestRegister, getProducts };
