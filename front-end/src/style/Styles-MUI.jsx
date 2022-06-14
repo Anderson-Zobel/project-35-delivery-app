@@ -41,10 +41,26 @@ GridEdited.propTypes = {
   children: PropTypes.element.isRequired,
 };
 
-export const MyContainer = styled(Container)(() => ({  
-}));
+// export function ContainerCheckout({ children }) {
+//   return (
+//     <Container
+//       container
+//       spacing={ 0 }
+//       direction="column"
+//       alignItems="center"
+//       justifyContent="center"
+//       style={ { minHeight: '100vh' } }
+//     >
+//       { children }    
+//     </Container>
+//   );
+// }
 
-export function ContainerCheckout({ children }) {
+// ContainerCheckout.propTypes = {
+//   children: PropTypes.element.isRequired,
+// };
+
+export function ContainerCheckoutItems({ children }) {
   return (
     <Container
       sx={{
@@ -65,6 +81,6 @@ export function ContainerCheckout({ children }) {
   );
 }
 
-ContainerCheckout.propTypes = {
+ContainerCheckoutItems.propTypes = {
   children: PropTypes.element.isRequired,
 };
