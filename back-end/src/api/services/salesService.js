@@ -1,29 +1,35 @@
-const { Sale } = require('../../database/models');
-const { SaleProduct } = require('../../database/models');
+const { Sale, SaleProduct } = require('../../database/models');
 const { findUserId } = require('./userService');
 
+const createSaleProduct = async (products, order) => {
+  console.log(order.order.dataValues.id);
+  const { id } = order.order.dataValues;
+  const promises = await products.map(async (product) => {
+    await SaleProduct.create({
+      saleId: id,
+      productId: product.id,
+      quantity: product.count,
+    });
+  });
+  Promise.all(promises);
+};
+
 const createOrder = async (payload) => {
-  const { email, sellerId, totalPrice, deliveryAddress, deliveryNumber, status, cart } = payload;
+  const { email, cart, ...saleInfo } = payload;
   const user = await findUserId(email);
   const userId = user.dataValues.id;
-  console.log(userId);
   if (!userId) return null;
   const order = await Sale.create({
     userId,
-    sellerId,
-    totalPrice,
-    deliveryAddress,
-    deliveryNumber,
-    status,
-    // salesProducts: cart.map((product) => [{ productId: product.id, quantity: product.count }]),
+    ...saleInfo,
+    products: cart,
   });
-  console.log(order.id);
-  const salesProduct = cart.map((product) =>
-    SaleProduct.create({ saleID: order.id, productId: product.id, quantity: product.count }));
-  Promise.all(salesProduct).then(salesProduct);
-  return order;
+  // await createSaleProduct(cart, order.id);
+
+  return { order };
 };
 
 module.exports = {
   createOrder,
+  createSaleProduct,
 };
