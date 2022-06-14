@@ -1,6 +1,6 @@
 'use strict';
 const {
-  Model
+  Model, NOW
 } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
@@ -53,6 +53,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     saleDate: {
       type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW,
       allowNull: false,
     },
     status: {
