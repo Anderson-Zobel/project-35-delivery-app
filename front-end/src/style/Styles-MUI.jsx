@@ -40,3 +40,22 @@ export function GridEdited({ children }) {
 GridEdited.propTypes = {
   children: PropTypes.element.isRequired,
 };
+
+// export function ContainerCheckout({ children }) {
+//   return (
+//     <Container
+//       container
+//       spacing={ 0 }
+//       direction="column"
+//       alignItems="center"
+//       justifyContent="center"
+//       style={ { minHeight: '100vh' } }
+//     >
+//       { children }
+//     </Container>
+//   );
+// }
+
+// ContainerCheckout.propTypes = {
+//   children: PropTypes.element.isRequired,
+// };

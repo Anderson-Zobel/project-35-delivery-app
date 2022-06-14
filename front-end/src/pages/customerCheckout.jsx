@@ -13,6 +13,7 @@ import NavBar from '../shared/components/navBar';
 import Context from '../shared/contexts/Context';
 import TableComponent from '../shared/components/tableComponent';
 import { getSellers } from '../shared/services/api';
+import ContainerCheckoutItems from '../style/CotainerCheckoutItems';
 
 export default function CustomerCheckout() {
   const { getTotalAmount } = useContext(Context);
@@ -51,45 +52,22 @@ export default function CustomerCheckout() {
   return (
     <>
       <NavBar />
-      <Container
-        container
-        spacing={ 0 }
-        direction="column"
-        alignItems="center"
-        justifyContent="center"
-        style={ { minHeight: '100vh', marginTop: '2rem' } }
-      >
+      <Container>
         <Paper
           sx={ {
             // marginTop: '2rem',
             padding: '2rem',
-            mr: 2,
           } }
         >
           <TableComponent />
-          <Container
-            sx={ {
-              backgroundColor: 'green',
-              width: '200px',
-              height: '50px',
-              display: 'flex',
-              flexWrap: 'wrap',
-              justifyContent: 'right',
-              // flexDirection: 'column',
-              // alignContent: 'center',
-              alignItems: 'center',
-              color: 'white',
-              mr: 0,
-              mt: 1,
-            } }
-          >
+          <ContainerCheckoutItems>
             <span>Total: R$</span>
             <span data-testid="customer_checkout__element-order-total-price">
               {getTotalAmount()}
             </span>
-          </Container>
+          </ContainerCheckoutItems>
         </Paper>
-        <Paper sx={ { padding: '2rem', mr: 2, mt: 2 } }>
+        <Paper sx={ { padding: '2rem', mt: 2 } }>
           <Box sx={ { minWidth: 120 } }>
             <InputLabel id="seller_select">Vendedor</InputLabel>
             <NativeSelect

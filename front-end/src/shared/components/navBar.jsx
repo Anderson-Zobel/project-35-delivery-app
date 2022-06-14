@@ -21,7 +21,7 @@ function getName() {
 
 export default function NavBar() {
   return (
-    <AppBar position="static">
+    <AppBar position="static" sx={ { marginBottom: '2rem' } }>
       <Toolbar sx={ { justifyContent: 'space-between' } }>
         <Stack direction="row" spacing={ 2 } sx={ { flexGrow: 1 } }>
           <Button color="inherit">
