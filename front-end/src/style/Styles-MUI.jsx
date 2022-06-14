@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Paper, Grid, Button } from '@mui/material';
+import { Paper, Grid, Button, Container } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
 const MyPaper = styled(Paper)(() => ({
@@ -38,5 +38,33 @@ export function GridEdited({ children }) {
 }
 
 GridEdited.propTypes = {
+  children: PropTypes.element.isRequired,
+};
+
+export const MyContainer = styled(Container)(() => ({  
+}));
+
+export function ContainerCheckout({ children }) {
+  return (
+    <Container
+      sx={{
+        backgroundColor: 'green',
+        width: '200px',
+        height: '50px',
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'center',
+        alignItems: 'center',
+        color: 'white',
+        mr: 0,
+        mt: 1,
+      }}
+    >
+      { children }    
+    </Container>
+  );
+}
+
+ContainerCheckout.propTypes = {
   children: PropTypes.element.isRequired,
 };
