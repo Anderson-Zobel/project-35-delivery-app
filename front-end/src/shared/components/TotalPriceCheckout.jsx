@@ -1,8 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useContext } from 'react';
 import { Container } from '@mui/material';
+import Context from '../contexts/Context';
 
-export default function ContainerCheckoutItems({ children }) {
+export default function TotalPriceCheckout() {
+  const { getTotalAmount } = useContext(Context);
   return (
     <Container
       sx={ {
@@ -18,11 +19,10 @@ export default function ContainerCheckoutItems({ children }) {
         mt: 1,
       } }
     >
-      {children}
+      <span>Total: R$</span>
+      <span data-testid="customer_checkout__element-order-total-price">
+        {getTotalAmount()}
+      </span>
     </Container>
   );
 }
-
-ContainerCheckoutItems.propTypes = {
-  children: PropTypes.element.isRequired,
-};

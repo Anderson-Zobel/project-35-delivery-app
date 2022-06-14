@@ -4,16 +4,15 @@ import {
   TableRow,
   TableCell,
   Table,
-  Button,
   TableContainer,
   TableBody,
 } from '@mui/material';
 import Context from '../contexts/Context';
 
-const testId = 'customer_checkout__element-order-table-';
+const testId = 'customer_order_details__element-order-table-';
 
-export default function TableHeader() {
-  const { removeProductsById, userCart } = useContext(Context);
+export default function TableOrder() {
+  const { userCart } = useContext(Context);
   return (
     <TableContainer>
       <Table sx={ { minWidth: 650 } } size="small" aria-label="a dense table">
@@ -24,7 +23,6 @@ export default function TableHeader() {
             <TableCell align="right">Quantidade</TableCell>
             <TableCell align="right">Valor Unitário</TableCell>
             <TableCell align="right">Sub-total</TableCell>
-            <TableCell align="right">Remover Item</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -63,14 +61,6 @@ export default function TableHeader() {
                 data-testid={ `${testId}sub-total-${index}` }
               >
                 {(item.price * item.count).toFixed(2).replace('.', ',')}
-              </TableCell>
-              <TableCell
-                align="right"
-                data-testid={ `${testId}remove-${index}` }
-              >
-                <Button onClick={ () => removeProductsById(item.id) }>
-                  Remover
-                </Button>
               </TableCell>
             </TableRow>
           ))}
