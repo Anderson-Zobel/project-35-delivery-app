@@ -13,8 +13,7 @@ import NavBar from '../shared/components/navBar';
 import Context from '../shared/contexts/Context';
 import TableComponent from '../shared/components/tableComponent';
 import { getSellers } from '../shared/services/api';
-import { ContainerCheckoutItems } from '../style/Styles-MUI';
-
+import ContainerCheckoutItems from '../style/CotainerCheckoutItems';
 
 export default function CustomerCheckout() {
   const { getTotalAmount } = useContext(Context);
@@ -53,14 +52,11 @@ export default function CustomerCheckout() {
   return (
     <>
       <NavBar />
-      <Container
-      
-      >
+      <Container>
         <Paper
-
           sx={ {
             // marginTop: '2rem',
-            padding: '2rem',            
+            padding: '2rem',
           } }
         >
           <TableComponent />
