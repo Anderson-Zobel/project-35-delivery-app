@@ -3,8 +3,8 @@ import { Fab } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useNavigate } from 'react-router-dom';
 import Context from '../shared/contexts/Context';
-import NavBar from '../shared/components/navBar';
-import CardDrinks from '../shared/components/cardDrinks';
+import NavBar from '../shared/components/NavBar';
+import CardDrinks from '../shared/components/CardDrinks';
 // import { getProducts } from '../shared/services/api';
 
 const style = {
