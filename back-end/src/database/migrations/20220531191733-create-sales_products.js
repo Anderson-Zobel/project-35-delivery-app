@@ -11,8 +11,6 @@ module.exports = {
         },
         allowNull: false,
         primaryKey: true,
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE'
 
       },
       product_id: {
@@ -23,8 +21,7 @@ module.exports = {
         },
         allowNull: false,
         primaryKey: true,
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE'
+
       },
       quantity: {
         type: Sequelize.INTEGER,
