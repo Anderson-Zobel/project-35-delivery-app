@@ -7,7 +7,6 @@ import {
   Button,
   Link,
 } from '@mui/material';
-// import { Link } from "react-router-dom";
 
 function handleClick() {
   localStorage.removeItem('user');

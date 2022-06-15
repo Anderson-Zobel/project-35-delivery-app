@@ -36,4 +36,13 @@ export const getSellers = async () => {
   }
 };
 
+export const createOrder = async (payload) => {
+  try {
+    const { id } = await apiConfig.post('/order', payload);
+    return id;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export default { requestLogin, requestRegister, getProducts };
