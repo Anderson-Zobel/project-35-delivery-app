@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { useParams } from 'react-router-dom';
 import { Typography, Button, TableHead, TableRow, TableCell } from '@mui/material';
 import moment from 'moment';
 import { setOrderStatusById } from '../../services/api';
@@ -6,6 +7,8 @@ import Context from '../../contexts/Context';
 
 export default function TableHeadContent() {
   const { order, deliveryStatus, setDeliveryStatus } = useContext(Context);
+
+  const { id } = useParams();
 
   const handleClick = async () => {
     const response = await setOrderStatusById(id);
