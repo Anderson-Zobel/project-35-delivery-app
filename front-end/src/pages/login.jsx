@@ -44,7 +44,11 @@ export default function Login() {
     if (response) {
       const userData = JSON.stringify(response);
       localStorage.setItem('user', userData);
-      navigate('../customer/products', { replace: true });
+      if (response.role === 'customer') {
+        navigate('../customer/products', { replace: true });
+      } else {
+        navigate('../seller/orders');
+      }
     }
     setApiError(true);
   };
