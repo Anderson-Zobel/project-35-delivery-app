@@ -3,8 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import '../style/login.css';
 import { Alert, Input, Button } from '@mui/material';
 import { PaperEdited, GridEdited } from '../style/Styles-MUI';
-// import Grid from '../style/Grid'
-// import getUser from '../shared/services/api';
 import { requestLogin } from '../shared/services/api';
 
 export default function Login() {
