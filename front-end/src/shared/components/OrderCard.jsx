@@ -15,22 +15,29 @@ export default function OrderCard({ order, index }) {
       <Box key={ index } sx={ { maxWidth: 500 } }>
         <Card>
           <CardContent>
-            <TextComponent id={ order.id } dataTestId="order-id" index={ order.id } />
             <TextComponent
-              id={ order.status }
+              value={ order.id }
+              text="Pedido:"
+              dataTestId="order-id"
+              index={ order.id }
+            />
+            <TextComponent
+              value={ order.status }
+              text="Status:"
               dataTestId="delivery-status"
-              index={ index }
+              index={ order.id }
             />
             <Typography
-              data-testid={ `customer_orders__element-order-date-${index}` }
+              data-testid={ `customer_orders__element-order-date-${order.id}` }
             >
               {moment(order.saleDate).format('DD/MM/YYYY')}
 
             </Typography>
             <TextComponent
-              id={ order.totalPrice }
+              value={ order.totalPrice.replace('.', ',') }
+              text="Valor Total: R$ "
               dataTestId="card-price"
-              index={ index }
+              index={ order.id }
             />
 
           </CardContent>
