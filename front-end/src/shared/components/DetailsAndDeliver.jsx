@@ -24,30 +24,25 @@ export default function DetailsAndDeliver() {
   const cart = JSON.parse(localStorage.getItem('carrinho'));
   const user = JSON.parse(localStorage.getItem('user'));
 
-  const payload = {
+  const body = {
     email: user.email,
     sellerId: +selectedSeller,
     totalPrice,
     deliveryAddress: address,
     deliveryNumber: number,
-    status: 'pendente',
+    status: 'Pendente',
     cart,
   };
 
   async function handleClick() {
-    console.log(payload);
-
-    // const user = JSON.parse(localStorage.getItem('user'));
     const userToken = user.token;
-    console.log(userToken);
-    const response2 = await createOrder(payload, userToken);
-    console.log(response2);
-    navigate(`../customer/orders/${response2.order.id}`, { replace: true });
+    const response = await createOrder(body, userToken);
+
+    navigate(`../customer/orders/${response.order.id}`, { replace: true });
   }
 
   function handleSelectChange(event) {
     setSelectedSeller(event.target.value);
-    // setSellerId(event.target.id);
   }
 
   function handleChange({ target }) {

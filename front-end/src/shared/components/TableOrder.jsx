@@ -22,12 +22,9 @@ export default function TableOrder() {
   const [deliveryStatus, setDeliveryStatus] = useState('pendente');
   const { id } = useParams();
 
-  console.log(order);
-
   useEffect(() => {
     async function fetchAPI() {
       const response = await getOrderById(id);
-      console.log(response);
       setOrder(response);
     }
     fetchAPI();
@@ -36,7 +33,6 @@ export default function TableOrder() {
   const handleClick = async () => {
     const response = await setOrderStatusById(id);
     setDeliveryStatus(response);
-    console.log(response);
   };
 
   return (
