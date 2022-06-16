@@ -60,7 +60,7 @@ export const getOrderById = async (id) => {
 
 export const setOrderStatusById = async (id) => {
   try {
-    const { data } = await apiConfig.put(`order/${id}`, {
+    const { data } = await apiConfig.patch(`order/${id}`, {
       status: 'entregue',
     });
     return data;
