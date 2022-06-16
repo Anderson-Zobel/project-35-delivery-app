@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../style/login.css';
 import { Alert, Input, Button } from '@mui/material';
@@ -9,7 +9,18 @@ export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [apiError, setApiError] = useState(false);
+  const [logged, setLogged] = useState();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (user) {
+      setLogged({ role: user.role });
+    }
+  }, []);
+  if (logged) {
+    navigate('../customer/products');
+  }
 
   const enableButton = () => {
     const numeroMinimo = 5;

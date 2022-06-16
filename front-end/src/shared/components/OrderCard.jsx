@@ -15,7 +15,7 @@ export default function OrderCard({ order, index }) {
       <Box key={ index } sx={ { maxWidth: 500 } }>
         <Card>
           <CardContent>
-            <TextComponent id={ order.id } dataTestId="order-id" index={ index } />
+            <TextComponent id={ order.id } dataTestId="order-id" index={ order.id } />
             <TextComponent
               id={ order.status }
               dataTestId="delivery-status"
