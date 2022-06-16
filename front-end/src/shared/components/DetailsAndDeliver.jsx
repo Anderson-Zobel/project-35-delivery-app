@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { InputLabel, NativeSelect, Paper, Box, TextField, Button } from '@mui/material';
-import { getSellers } from '../services/api';
+import { createOrder, getSellers } from '../services/api';
+import Context from '../contexts/Context';
 
 export default function DetailsAndDeliver() {
   const navigate = useNavigate();
-
+  const { getTotalAmount } = useContext(Context);
   const [sellers, setSellers] = useState([]);
   const [selectedSeller, setSelectedSeller] = useState('');
   const [address, setAddress] = useState('');
@@ -19,12 +20,34 @@ export default function DetailsAndDeliver() {
     fetchAPI();
   }, []);
 
-  function handleClick() {
-    navigate('../customer/orders/:id', { replace: true });
+  const totalPrice = parseInt(getTotalAmount(), 16);
+  const cart = JSON.parse(localStorage.getItem('carrinho'));
+  const user = JSON.parse(localStorage.getItem('user'));
+
+  const payload = {
+    email: user.email,
+    sellerId: +selectedSeller,
+    totalPrice,
+    deliveryAddress: address,
+    deliveryNumber: number,
+    status: 'pendente',
+    cart,
+  };
+
+  async function handleClick() {
+    console.log(payload);
+    
+    const user = JSON.parse(localStorage.getItem('user'));
+    const userToken = user.token;
+    console.log(userToken);
+    const response2 = await createOrder(payload, userToken);
+    console.log(response2);
+    navigate(`../customer/orders/${response2.order.id}`, { replace: true });
   }
 
   function handleSelectChange(event) {
     setSelectedSeller(event.target.value);
+    // setSellerId(event.target.id);
   }
 
   function handleChange({ target }) {
@@ -50,9 +73,10 @@ export default function DetailsAndDeliver() {
           value={ selectedSeller }
           onChange={ (e) => handleSelectChange(e) }
         >
+          <option> -- select an option -- </option>
           {sellers
             ? sellers.map((seller) => (
-              <option key={ seller.id } value={ seller.name }>
+              <option key={ seller.id } value={ seller.id }>
                 {seller.name}
               </option>
             ))
