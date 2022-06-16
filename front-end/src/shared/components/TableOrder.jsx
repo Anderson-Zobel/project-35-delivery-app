@@ -35,21 +35,20 @@ export default function TableOrder() {
 
   const handleClick = async () => {
     const response = await setOrderStatusById(id);
-    setDeliveryStatus(response)  
-    console.log(response); 
+    setDeliveryStatus(response);
+    console.log(response);
   };
-  
 
   return (
     <Container>
       <TableContainer>
         <Table sx={ { minWidth: 650 } } size="small" aria-label="a dense table">
           <TableHead>
-            { order ? (
+            {order ? (
               <Typography>
                 Pedido:
                 <span data-testid={ `${testId}details-label-order-id` }>
-                  { order.id}
+                  {order.id}
                 </span>
                 P.Vendedora:
                 <span data-testid={ `${testId}details-label-seller-name` }>
@@ -67,13 +66,13 @@ export default function TableOrder() {
                 >
                   Marcar como entregue
                 </Button>
-              </Typography>) : null }
+              </Typography>) : null}
 
             <TableTitles />
 
           </TableHead>
           <TableBody>
-            { order ? (order.products.map((item, index) => (
+            {order ? (order.products.map((item, index) => (
               <TableRow
                 key={ item.name }
                 sx={ { '&:last-child td, &:last-child th': { border: 0 } } }
@@ -110,12 +109,11 @@ export default function TableOrder() {
                   {(item.SaleProduct.quantity * item.price).toFixed(2).replace('.', ',')}
                 </TableCell>
               </TableRow>
-            ))) : null }
+            ))) : null}
           </TableBody>
         </Table>
       </TableContainer>
-      <Container>{ order ? (order.totalPrice): null }</Container>
+      <Container>{order ? (order.totalPrice) : null}</Container>
     </Container>
   );
 }
- 

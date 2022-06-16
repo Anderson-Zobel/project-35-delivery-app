@@ -36,8 +36,8 @@ export default function DetailsAndDeliver() {
 
   async function handleClick() {
     console.log(payload);
-    
-    const user = JSON.parse(localStorage.getItem('user'));
+
+    // const user = JSON.parse(localStorage.getItem('user'));
     const userToken = user.token;
     console.log(userToken);
     const response2 = await createOrder(payload, userToken);
