@@ -9,6 +9,7 @@ export default function Provider({ children }) {
   const [totalAmount, setTotalAmount] = useState();
   const [disableCartButton, setDisableCartButton] = useState(true);
   const [order, setOrder] = useState();
+  const [deliveryStatus, setDeliveryStatus] = useState('Pendente');
 
   useEffect(() => {
     async function fetchAPI() {
@@ -69,6 +70,8 @@ export default function Provider({ children }) {
   const removeProductsById = (id) => {
     const cart = [...userCart];
     const cartFiltered = cart.filter((p) => p.id !== id);
+    const cartStringFy = JSON.stringify(cartFiltered);
+    localStorage.setItem('carrinho', cartStringFy);
     setUserCart(cartFiltered);
   };
 
@@ -89,6 +92,8 @@ export default function Provider({ children }) {
     removeProductsById,
     order,
     setOrder,
+    deliveryStatus,
+    setDeliveryStatus,
   };
 
   return <Context.Provider value={ myProvider }>{children}</Context.Provider>;

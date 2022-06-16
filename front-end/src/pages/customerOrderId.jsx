@@ -10,19 +10,19 @@ import Context from '../shared/contexts/Context';
 import { getOrderById } from '../shared/services/api';
 
 export default function OrderById() {
-  const { setOrder } = useContext(Context);
+  const { setOrder, setDeliveryStatus } = useContext(Context);
 
   const { id } = useParams();
   console.log(id);
 
   useEffect(() => {
     async function fetchAPI() {
-      const response = await getOrderById(+id);
+      const response = await getOrderById(id);
       setOrder(response);
-      console.log(response);
+      setDeliveryStatus(response.status);
     }
     fetchAPI();
-  }, [id]);
+  }, [id, setOrder, setDeliveryStatus]);
 
   return (
     <>

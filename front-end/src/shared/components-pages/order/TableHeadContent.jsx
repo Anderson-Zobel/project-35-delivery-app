@@ -1,16 +1,15 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import { Typography, Button, TableHead, TableRow, TableCell } from '@mui/material';
 import moment from 'moment';
 import { setOrderStatusById } from '../../services/api';
 import Context from '../../contexts/Context';
 
 export default function TableHeadContent() {
-  const { order } = useContext(Context);
-  const [deliveryStatus, setDeliveryStatus] = useState('pendente');
+  const { order, deliveryStatus, setDeliveryStatus } = useContext(Context);
 
   const handleClick = async () => {
     const response = await setOrderStatusById(id);
-    setDeliveryStatus(response);
+    setDeliveryStatus(response.sale.status);
   };
 
   const testId = 'customer_order_details__element-order-';
