@@ -35,7 +35,7 @@ export default function NavBar() {
           </Button>
           <Button color="inherit">
             <Link
-              href="/orders"
+              href="/customer/orders"
               color="inherit"
               underline="none"
               data-testid="customer_products__element-navbar-link-orders"

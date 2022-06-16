@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { InputLabel, NativeSelect, Paper, Box, TextField, Button } from '@mui/material';
-import { getSellers } from '../services/api';
+import { createOrder, getSellers } from '../services/api';
+import Context from '../contexts/Context';
 
 export default function DetailsAndDeliver() {
   const navigate = useNavigate();
-
+  const { getTotalAmount } = useContext(Context);
   const [sellers, setSellers] = useState([]);
   const [selectedSeller, setSelectedSeller] = useState('');
   const [address, setAddress] = useState('');
@@ -19,8 +20,26 @@ export default function DetailsAndDeliver() {
     fetchAPI();
   }, []);
 
-  function handleClick() {
-    navigate('../customer/orders/:id', { replace: true });
+  const totalPrice = parseFloat(getTotalAmount().replace(',', '.'));
+  const cart = JSON.parse(localStorage.getItem('carrinho'));
+  const user = JSON.parse(localStorage.getItem('user'));
+  console.log(totalPrice);
+
+  const body = {
+    email: user.email,
+    sellerId: +selectedSeller,
+    totalPrice,
+    deliveryAddress: address,
+    deliveryNumber: number,
+    status: 'Pendente',
+    cart,
+  };
+
+  async function handleClick() {
+    const userToken = user.token;
+    const response = await createOrder(body, userToken);
+
+    navigate(`../customer/orders/${response.order.id}`, { replace: true });
   }
 
   function handleSelectChange(event) {
@@ -50,9 +69,10 @@ export default function DetailsAndDeliver() {
           value={ selectedSeller }
           onChange={ (e) => handleSelectChange(e) }
         >
+          <option> -- select an option -- </option>
           {sellers
             ? sellers.map((seller) => (
-              <option key={ seller.id } value={ seller.name }>
+              <option key={ seller.id } value={ seller.id }>
                 {seller.name}
               </option>
             ))
