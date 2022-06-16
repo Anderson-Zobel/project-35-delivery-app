@@ -36,16 +36,14 @@ export const getSellers = async () => {
   }
 };
 
-export const createOrder = async (payload, userToken) => {
+export const createOrder = async (body, userToken) => {
   try {
-  console.log(userToken);
-  const config = {
-    headers: { authorization: userToken }
-  };
+    const header = {
+      headers: { authorization: userToken },
+    };
 
-  const { data } = await apiConfig.post('/order', payload, config );
-  return data;
-
+    const { data } = await apiConfig.post('/order', body, header);
+    return data;
   } catch (error) {
     console.log(error);
   }
@@ -61,14 +59,21 @@ export const getOrderById = async (id) => {
 };
 
 export const setOrderStatusById = async (id) => {
-  try{
-    const { data } = await apiConfig.patch(`order/${id}`, {
-      status: 'entregue'
-    });    
+  try {
+    const { data } = await apiConfig.put(`order/${id}`, {
+      status: 'entregue',
+    });
     return data;
-   }catch (error) {
+  } catch (error) {
     console.log(error);
   }
 };
 
-export default { requestLogin, requestRegister, getProducts, getOrderById, createOrder, setOrderStatusById };
+export default {
+  requestLogin,
+  requestRegister,
+  getProducts,
+  getOrderById,
+  createOrder,
+  setOrderStatusById,
+};
