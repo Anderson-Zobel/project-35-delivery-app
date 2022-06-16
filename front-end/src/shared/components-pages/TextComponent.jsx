@@ -6,7 +6,7 @@ export default function TextComponent({ value, text, dataTestId, index }) {
   return (
     <Typography>
       <span>{text}</span>
-      <span data-testid={ `customer_orders__element-${dataTestId}${index}` }>
+      <span data-testid={ `customer_orders__element-${dataTestId}-${index}` }>
         {value}
       </span>
     </Typography>
