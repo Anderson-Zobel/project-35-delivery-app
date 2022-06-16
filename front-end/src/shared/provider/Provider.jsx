@@ -68,6 +68,8 @@ export default function Provider({ children }) {
   const removeProductsById = (id) => {
     const cart = [...userCart];
     const cartFiltered = cart.filter((p) => p.id !== id);
+    const cartStringFy = JSON.stringify(cartFiltered);
+    localStorage.setItem('carrinho', cartStringFy);
     setUserCart(cartFiltered);
   };
 
