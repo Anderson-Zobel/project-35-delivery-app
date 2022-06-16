@@ -13,7 +13,6 @@ export default function OrderById() {
   const { setOrder, setDeliveryStatus } = useContext(Context);
 
   const { id } = useParams();
-  console.log(id);
 
   useEffect(() => {
     async function fetchAPI() {
