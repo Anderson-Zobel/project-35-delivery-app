@@ -17,7 +17,7 @@ export default function TableOrder() {
               <TableBodycontent />
             </Table>
           </TableContainer>
-          <Container>{ order.totalPrice }</Container>
+          <Container>{ (order.totalPrice).replace('.', ',') }</Container>
         </>
       ) : null}
     </Container>
