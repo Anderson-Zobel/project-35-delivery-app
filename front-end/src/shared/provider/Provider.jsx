@@ -8,6 +8,7 @@ export default function Provider({ children }) {
   const [userCart, setUserCart] = useState([]);
   const [totalAmount, setTotalAmount] = useState();
   const [disableCartButton, setDisableCartButton] = useState(true);
+  const [order, setOrder] = useState();
 
   useEffect(() => {
     async function fetchAPI() {
@@ -86,6 +87,8 @@ export default function Provider({ children }) {
     products,
     getTotalAmount,
     removeProductsById,
+    order,
+    setOrder,
   };
 
   return <Context.Provider value={ myProvider }>{children}</Context.Provider>;
