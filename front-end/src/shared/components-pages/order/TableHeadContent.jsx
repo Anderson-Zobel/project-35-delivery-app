@@ -14,7 +14,6 @@ export default function TableHeadContent() {
     const response = await setOrderStatusById(id);
     setDeliveryStatus(response.sale.status);
   };
-
   const testId = 'customer_order_details__element-order-';
 
   return (
@@ -28,14 +27,15 @@ export default function TableHeadContent() {
         <span data-testid={ `${testId}details-label-seller-name` }>
           {order.seller.name}
         </span>
-        <span data-testid={ `${testId}label-order-date` }>
+        <span data-testid={ `${testId}details-label-order-date` }>
           {moment(order.saleDate).format('DD/MM/YYYY')}
         </span>
-        <span data-testid={ `${testId}label-delivery-status` }>
+        <span data-testid={ `${testId}details-label-delivery-status` }>
           {deliveryStatus}
         </span>
         <Button
           data-testid="customer_order_details__button-delivery-check"
+          disabled
           onClick={ () => handleClick() }
         >
           Marcar como entregue
