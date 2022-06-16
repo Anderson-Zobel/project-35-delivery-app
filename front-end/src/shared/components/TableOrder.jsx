@@ -19,20 +19,21 @@ const testId = 'customer_order_details__element-order-';
 
 export default function TableOrder() {
   const [order, setOrder] = useState();
-  const [deliveryStatus, setDeliveryStatus] = useState('pendente');
+  const [deliveryStatus, setDeliveryStatus] = useState('Pendente');
   const { id } = useParams();
 
   useEffect(() => {
     async function fetchAPI() {
       const response = await getOrderById(id);
       setOrder(response);
+      setDeliveryStatus(response.status);
     }
     fetchAPI();
   }, [id]);
 
   const handleClick = async () => {
-    const response = await setOrderStatusById(id);
-    setDeliveryStatus(response);
+    const { sale } = await setOrderStatusById(id);
+    setDeliveryStatus(sale.status);
   };
 
   return (
