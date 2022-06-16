@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import TextComponent from './TextComponent';
 
-export default function OrderCard({ order, index }) {
+export default function OrderCard({ order, index, user }) {
   return (
     <Link
-      href={ `/customer/orders/${order.id}` }
+      href={ `/${user}/orders/${order.id}` }
       color="inherit"
       underline="none"
       data-testid="customer_products__element-navbar-link-products"
@@ -20,32 +20,38 @@ export default function OrderCard({ order, index }) {
               text="Pedido:"
               dataTestId="order-id"
               index={ order.id }
+              user={ user }
             />
             <TextComponent
               value={ order.status }
               text="Status:"
               dataTestId="delivery-status"
               index={ order.id }
+              user={ user }
             />
             <Typography
-              data-testid={ `customer_orders__element-order-date-${order.id}` }
+              data-testid={ `${user}_orders__element-order-date-${order.id}` }
             >
               {moment(order.saleDate).format('DD/MM/YYYY')}
-
             </Typography>
             <TextComponent
               value={ order.totalPrice.replace('.', ',') }
               text="Valor Total: R$ "
               dataTestId="card-price"
               index={ order.id }
+              user={ user }
             />
-
+            {user === 'seller' ? (
+              <Typography
+                data-testid={ `seller_orders__element-card-address-${order.id}` }
+              >
+                {order.deliveryAddress + order.deliveryNumber}
+              </Typography>
+            ) : null}
           </CardContent>
         </Card>
       </Box>
-
     </Link>
-
   );
 }
 
@@ -57,4 +63,5 @@ OrderCard.propTypes = {
     totalPrice: PropTypes.number,
   }).isRequired,
   index: PropTypes.number.isRequired,
+  user: PropTypes.string.isRequired,
 };
