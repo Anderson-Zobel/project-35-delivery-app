@@ -45,4 +45,16 @@ export const createOrder = async (payload) => {
   }
 };
 
-export default { requestLogin, requestRegister, getProducts };
+export const getOrderByUserId = async (id, userToken) => {
+  try {
+    const header = {
+      headers: { authorization: userToken },
+    };
+    const { data } = await apiConfig.get(`/order/customer/${id}`, header);
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export default { requestLogin, requestRegister, getProducts, getOrderByUserId };
