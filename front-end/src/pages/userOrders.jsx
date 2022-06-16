@@ -20,7 +20,7 @@ export default function UserOrders() {
       <NavBar />
       {orders
         ? orders.sales.map((order, index) => (
-          <OrderCard key={ index } order={ order } index={ index } />
+          <OrderCard key={ index } order={ order } index={ index } user="customer" />
         ))
         : null}
     </>
