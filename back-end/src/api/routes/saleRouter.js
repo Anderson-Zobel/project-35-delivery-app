@@ -6,7 +6,7 @@ const sale = Router();
 
 sale.post('/order', tokenValidator, saleController.newOrder);
 sale.get('/order/:id', saleController.findSaleById);
-sale.get('/order/customer/:id', saleController.findSalesByUserId);
+sale.get('/order/customer/:id', tokenValidator, saleController.findSalesByUserId);
 sale.get('/order/seller/:id', saleController.findSalesBySellerId);
 sale.put('/order/:id', saleController.updateSaleStatusById);
 
