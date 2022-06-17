@@ -82,11 +82,9 @@ export const getOrderBySellerId = async (id, userToken) => {
   }
 };
 
-export const setOrderStatusById = async (id) => {
+export const setOrderStatusById = async (id, status) => {
   try {
-    const { data } = await apiConfig.patch(`order/${id}`, {
-      status: 'entregue',
-    });
+    const { data } = await apiConfig.patch(`order/${id}`, { status });
     return data;
   } catch (error) {
     console.log(error);
