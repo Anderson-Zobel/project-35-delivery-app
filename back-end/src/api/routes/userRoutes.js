@@ -21,4 +21,9 @@ user.post(
 user.get('/seller',
   userController.getSellers);
 
+user.get(
+  '/users',
+  userController.getAllUsers,
+);
+
 module.exports = user;
