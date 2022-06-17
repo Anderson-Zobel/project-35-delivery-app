@@ -70,6 +70,18 @@ export const getOrderByUserId = async (id, userToken) => {
   }
 };
 
+export const getOrderBySellerId = async (id, userToken) => {
+  try {
+    const header = {
+      headers: { authorization: userToken },
+    };
+    const { data } = await apiConfig.get(`/order/seller/${id}`, header);
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const setOrderStatusById = async (id) => {
   try {
     const { data } = await apiConfig.patch(`order/${id}`, {
@@ -89,4 +101,5 @@ export default {
   createOrder,
   getOrderByUserId,
   setOrderStatusById,
+  getOrderBySellerId,
 };
