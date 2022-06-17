@@ -19,23 +19,26 @@ function getName() {
 }
 
 export default function NavBar() {
+  const { role } = JSON.parse(localStorage.getItem('user'));
   return (
     <AppBar position="static" sx={ { marginBottom: '2rem' } }>
       <Toolbar sx={ { justifyContent: 'space-between' } }>
         <Stack direction="row" spacing={ 2 } sx={ { flexGrow: 1 } }>
+          { role === 'customer' ? (
+            <Button color="inherit">
+              <Link
+                href={ `/${role}/products` }
+                color="inherit"
+                underline="none"
+                data-testid="customer_products__element-navbar-link-products"
+              >
+                Produtos
+              </Link>
+            </Button>
+          ) : null}
           <Button color="inherit">
             <Link
-              href="/customer/products"
-              color="inherit"
-              underline="none"
-              data-testid="customer_products__element-navbar-link-products"
-            >
-              Produtos
-            </Link>
-          </Button>
-          <Button color="inherit">
-            <Link
-              href="/customer/orders"
+              href={ `/${role}/orders` }
               color="inherit"
               underline="none"
               data-testid="customer_products__element-navbar-link-orders"
