@@ -19,6 +19,7 @@ export default function AppRoutes() {
       <Route path="/customer/orders" element={ <UserOrders /> } />
       <Route path="/seller/orders" element={ <SellerOrders /> } />
       <Route path="/customer/orders/:id" element={ <CustomerOrderId /> } />
+      <Route path="/seller/orders/:id" element={ <CustomerOrderId /> } />
     </Routes>
   );
 }
