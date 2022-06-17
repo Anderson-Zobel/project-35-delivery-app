@@ -36,6 +36,15 @@ export const getSellers = async () => {
   }
 };
 
+export const getUsers = async () => {
+  try {
+    const { data } = await apiConfig.get('/users');
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const createOrder = async (body, userToken) => {
   try {
     const header = {
@@ -100,4 +109,5 @@ export default {
   getOrderByUserId,
   setOrderStatusById,
   getOrderBySellerId,
+  getUsers,
 };
