@@ -6,6 +6,7 @@ import TableBodycontent from './TableBodyContent';
 
 export default function TableOrder() {
   const { order } = useContext(Context);
+  const { role } = JSON.parse(localStorage.getItem('user'));
 
   return (
     <Container>
@@ -17,7 +18,9 @@ export default function TableOrder() {
               <TableBodycontent />
             </Table>
           </TableContainer>
-          <Container data-testid="customer_order_details__element-order-total-price">
+          <Container
+            data-testid={ `${role}_order_details__element-order-total-price` }
+          >
             { (order.totalPrice).replace('.', ',') }
           </Container>
         </>
