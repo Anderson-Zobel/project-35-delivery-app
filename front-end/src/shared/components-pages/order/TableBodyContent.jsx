@@ -4,8 +4,10 @@ import Context from '../../contexts/Context';
 
 export default function TableBodycontent() {
   const { order } = useContext(Context);
+  const { role } = JSON.parse(localStorage.getItem('user'));
 
-  const testId = 'customer_order_details__element-order-';
+  const testId = `${role}_order_details__element-order-`;
+
   return (
     <TableBody>
       { order.products.map((item, index) => (
