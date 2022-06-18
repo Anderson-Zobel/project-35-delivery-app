@@ -25,7 +25,7 @@ const getAllUsers = async (req, res, _next) => {
         return res.status(404).json({ message: 'Users not found' });
     }
     return res.status(200).json(users);
-}
+};
 
 const getSellers = async (_req, res, _next) => {
     const sellers = await findSellers();
