@@ -18,7 +18,12 @@ export default function ListedUserBody() {
       <TableBody>
         { users.map((item, index) => (
           <TableRow key={ item.name }>
-            <TableCell align="center">{ index + 1 }</TableCell>
+            <TableCell
+              align="center"
+              data-testid={ `admin_manage__element-user-table-item-number-${index}` }
+            >
+              { index + 1 }
+            </TableCell>
             <TableCell
               align="center"
               data-testid={ `admin_manage__element-user-table-name-${index}` }
