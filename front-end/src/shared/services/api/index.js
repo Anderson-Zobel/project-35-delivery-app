@@ -18,6 +18,17 @@ export const requestRegister = async ({ name, email, password, role = 'costumer'
   }
 };
 
+export const adminRequestRegister = async (body, token) => {
+  try {
+    const header = { headers: { authorization: token } };
+
+    const { data } = await apiConfig.post('/admin/register', body, header);
+    return data;
+  } catch (error) {
+    return error.response;
+  }
+};
+
 export const getProducts = async () => {
   try {
     const { data } = await apiConfig.get('/products');
