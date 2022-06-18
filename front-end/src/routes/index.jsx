@@ -7,6 +7,7 @@ import CustomerCheckout from '../pages/customerCheckout';
 import CustomerOrderId from '../pages/customerOrderId';
 import UserOrders from '../pages/userOrders';
 import SellerOrders from '../pages/sellerOrders';
+import AdminPage from '../pages/adminPage';
 
 export default function AppRoutes() {
   return (
@@ -20,6 +21,8 @@ export default function AppRoutes() {
       <Route path="/seller/orders" element={ <SellerOrders /> } />
       <Route path="/customer/orders/:id" element={ <CustomerOrderId /> } />
       <Route path="/seller/orders/:id" element={ <CustomerOrderId /> } />
+      <Route path="/seller/orders/:id" element={ <CustomerOrderId /> } />
+      <Route path="/admin/manage" element={ <AdminPage /> } />
     </Routes>
   );
 }

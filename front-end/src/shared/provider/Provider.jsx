@@ -10,6 +10,7 @@ export default function Provider({ children }) {
   const [disableCartButton, setDisableCartButton] = useState(true);
   const [order, setOrder] = useState();
   const [deliveryStatus, setDeliveryStatus] = useState('Pendente');
+  const [users, setUsers] = useState([]);
 
   useEffect(() => {
     async function fetchAPI() {
@@ -94,6 +95,8 @@ export default function Provider({ children }) {
     setOrder,
     deliveryStatus,
     setDeliveryStatus,
+    users,
+    setUsers,
   };
 
   return <Context.Provider value={ myProvider }>{children}</Context.Provider>;

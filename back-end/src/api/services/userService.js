@@ -1,4 +1,5 @@
 const md5 = require('md5');
+const { Op } = require('sequelize');
 const { User } = require('../../database/models');
 const { genToken } = require('./jwtService');
 
@@ -17,13 +18,20 @@ const loginService = async (email, userPassword) => {
   };
 };
 
+const getUsers = async () => {
+  const users = await User.findAll({ where: { role: { [Op.not]: 'administrator' } } });
+  return users;
+};
+
 const createUser = async (name, email, userPassword, role) => {
-  const userExist = await User.findOne({ where: { name, email } });
+  const userExist = await User.findOne({ where: { [Op.or]: [{ name }, { email }] } });
+  
   if (!userExist) {
     const password = hashPassword(userPassword);
     const createdUser = await User.create({ name, email, password, role });
     return createdUser;
   }
+
   return null;
 };
 
@@ -40,4 +48,5 @@ module.exports = {
   createUser,
   findSellers,
   findUserId,
+  getUsers,
 };

@@ -44,10 +44,13 @@ export default function Login() {
     if (response) {
       const userData = JSON.stringify(response);
       localStorage.setItem('user', userData);
-      if (response.role === 'customer') {
-        navigate('../customer/products', { replace: true });
-      } else {
-        navigate('../seller/orders');
+      switch (response.role) {
+      case 'customer':
+        return navigate('../customer/products', { replace: true });
+      case 'administrator':
+        return navigate('../admin/manage', { replace: true });
+      default:
+        return navigate('../seller/orders');
       }
     }
     setApiError(true);
