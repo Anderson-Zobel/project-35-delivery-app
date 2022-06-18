@@ -7,9 +7,10 @@ import {
   Paper,
   Button,
   Box,
+  Alert,
 } from '@mui/material';
 import Context from '../contexts/Context';
-import { requestRegister } from '../services/api';
+import { adminRequestRegister } from '../services/api';
 
 const style = {
   display: 'flex',
@@ -21,6 +22,7 @@ const style = {
 
 export default function RegisterUser() {
   const { setUsers } = useContext(Context);
+  const [apiError, setApiError] = useState(false);
   const [newUser, setNewUser] = useState({ name: '', email: '', password: '', role: '' });
 
   const enableButton = () => {
@@ -54,7 +56,12 @@ export default function RegisterUser() {
   };
 
   const handleClick = async () => {
-    await requestRegister(newUser);
+    const { token } = JSON.parse(localStorage.getItem('user'));
+
+    const response = await adminRequestRegister(newUser, token);
+    if (response.status) {
+      return setApiError(true);
+    }
     setUsers((prevState) => ([...prevState, newUser]));
   };
 
@@ -112,7 +119,7 @@ export default function RegisterUser() {
         />
         <NativeSelect
           inputProps={ {
-            'data-testid': 'admin_manage__input-role',
+            'data-testid': 'admin_manage__select-role',
           } }
           labelId="tipo_select"
           id="tipo"
@@ -126,11 +133,22 @@ export default function RegisterUser() {
           <option value="customer"> Usuario </option>
 
         </NativeSelect>
-        <Button disabled={ enableButton() } onClick={ () => handleClick() }>
+        <Button
+          disabled={ enableButton() }
+          onClick={ () => handleClick() }
+          data-testid="admin_manage__button-register"
+        >
           CADASTRAR
         </Button>
       </Paper>
+      {apiError ? (
+        <Alert
+          severity="error"
+          data-testid="admin_manage__element-invalid-register"
+        >
+          Usuario com nome ou email já cadastrado.
+        </Alert>
+      ) : null}
     </Container>
-
   );
 }
