@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { Table, TableBody, TableRow, TableCell, Button } from '@mui/material';
-import { getUsers } from '../services/api';
+import { getUsers, adminRequestDeleteUser } from '../services/api';
 import Context from '../contexts/Context';
 
 export default function ListedUserBody() {
@@ -13,6 +13,14 @@ export default function ListedUserBody() {
     }
     fetchAPI();
   }, [setUsers]);
+
+  const handleClick = async (userId) => {
+    const { token } = JSON.parse(localStorage.getItem('user'));
+    await adminRequestDeleteUser(userId, token);
+
+    const newUsers = users.filter((u) => u.id !== userId);
+    setUsers(newUsers);
+  };
   return (
     <Table>
       <TableBody>
@@ -45,6 +53,7 @@ export default function ListedUserBody() {
             </TableCell>
             <Button
               data-testid={ `admin_manage__element-user-table-remove-${index}` }
+              onClick={ () => handleClick(item.id) }
             >
               Excluir
             </Button>
