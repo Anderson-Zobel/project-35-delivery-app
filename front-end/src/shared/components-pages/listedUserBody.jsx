@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from 'react';
-import { Table, TableBody, TableRow, TableCell, Button } from '@mui/material';
+import { Table, TableBody, TableRow, TableCell, IconButton } from '@mui/material';
+import { Delete } from '@mui/icons-material';
 import { getUsers } from '../services/api';
 import Context from '../contexts/Context';
 
@@ -14,7 +15,6 @@ export default function ListedUserBody() {
     fetchAPI();
   }, [setUsers]);
   return (
-    <Table>
       <TableBody>
         { users.map((item, index) => (
           <TableRow key={ item.name }>
@@ -43,14 +43,16 @@ export default function ListedUserBody() {
             >
               { item.role }
             </TableCell>
-            <Button
-              data-testid={ `admin_manage__element-user-table-remove-${index}` }
-            >
-              Excluir
-            </Button>
+            <TableCell align="center">
+              <IconButton 
+                aria-label="delete" size="large"
+                data-testid={ `admin_manage__element-user-table-remove-${index}` }
+              >
+                <Delete fontSize="inherit" />
+              </IconButton>
+            </TableCell>
           </TableRow>
         )) }
       </TableBody>
-    </Table>
   );
 }
