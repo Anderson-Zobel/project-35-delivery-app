@@ -1,7 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { TableBody, TableRow, TableCell, IconButton } from '@mui/material';
 import { Delete } from '@mui/icons-material';
-import { getUsers } from '../services/api';
 import { getUsers, adminRequestDeleteUser } from '../services/api';
 import Context from '../contexts/Context';
 
@@ -24,45 +23,46 @@ export default function ListedUserBody() {
     setUsers(newUsers);
   };
   return (
-      <TableBody>
-        { users.map((item, index) => (
-          <TableRow key={ item.name }>
-            <TableCell
-              align="center"
-              data-testid={ `admin_manage__element-user-table-item-number-${index}` }
+    <TableBody>
+      { users.map((item, index) => (
+        <TableRow key={ item.name }>
+          <TableCell
+            align="center"
+            data-testid={ `admin_manage__element-user-table-item-number-${index}` }
+          >
+            { index + 1 }
+          </TableCell>
+          <TableCell
+            align="center"
+            data-testid={ `admin_manage__element-user-table-name-${index}` }
+          >
+            { item.name }
+          </TableCell>
+          <TableCell
+            align="center"
+            data-testid={ `admin_manage__element-user-table-email-${index}` }
+          >
+            { item.email }
+            {' '}
+          </TableCell>
+          <TableCell
+            align="center"
+            data-testid={ `admin_manage__element-user-table-role-${index}` }
+          >
+            { item.role }
+          </TableCell>
+          <TableCell align="center">
+            <IconButton
+              aria-label="delete"
+              size="large"
+              data-testid={ `admin_manage__element-user-table-remove-${index}` }
+              onClick={ () => handleClick(item.id) }
             >
-              { index + 1 }
-            </TableCell>
-            <TableCell
-              align="center"
-              data-testid={ `admin_manage__element-user-table-name-${index}` }
-            >
-              { item.name }
-            </TableCell>
-            <TableCell
-              align="center"
-              data-testid={ `admin_manage__element-user-table-email-${index}` }
-            >
-              { item.email }
-              {' '}
-            </TableCell>
-            <TableCell
-              align="center"
-              data-testid={ `admin_manage__element-user-table-role-${index}` }
-            >
-              { item.role }
-            </TableCell>
-            <TableCell align="center">
-              <IconButton 
-                aria-label="delete" size="large"
-                data-testid={ `admin_manage__element-user-table-remove-${index}` }
-                onClick={ () => handleClick(item.id) }
-              >
-                <Delete fontSize="inherit" />
-              </IconButton>
-            </TableCell>
-          </TableRow>
-        )) }
-      </TableBody>
+              <Delete fontSize="inherit" />
+            </IconButton>
+          </TableCell>
+        </TableRow>
+      )) }
+    </TableBody>
   );
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, TableHead, TableRow, TableCell } from '@mui/material';
+import { TableHead, TableRow, TableCell } from '@mui/material';
 
 export default function ListedUserHeader() {
   return (

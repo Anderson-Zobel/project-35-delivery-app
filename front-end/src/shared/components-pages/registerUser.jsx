@@ -1,6 +1,5 @@
 import React, { useState, useContext } from 'react';
 import {
-  Container,
   InputLabel,
   TextField,
   NativeSelect,
@@ -11,7 +10,7 @@ import {
 } from '@mui/material';
 import Context from '../contexts/Context';
 import { adminRequestRegister } from '../services/api';
-import { ContainerTitleText } from '../../style/Styles-MUI'
+import { ContainerTitleText } from '../../style/Styles-MUI';
 
 export default function RegisterUser() {
   const { setUsers } = useContext(Context);
@@ -58,11 +57,10 @@ export default function RegisterUser() {
     setUsers((prevState) => ([...prevState, newUser]));
   };
 
-
   return (
     <ContainerTitleText>
-      <Box        
-        sx={ { p:1, mr: 'auto', fontSize: '1.5rem' } }
+      <Box
+        sx={ { p: 1, mr: 'auto', fontSize: '1.5rem' } }
       >
         Cadastrar Novo Usuário
       </Box>
@@ -73,10 +71,10 @@ export default function RegisterUser() {
           // margin: '1rem',
           // justifyContent: 'space-around',
           width: '1000px',
-          align: 'center' 
+          align: 'center',
         } }
       >
-        <InputLabel id="seller_select"  />
+        <InputLabel id="seller_select" />
         <TextField
           sx={ { margin: '1rem' } }
           size="small"
@@ -86,7 +84,6 @@ export default function RegisterUser() {
           labelId="name_field"
           // value={}
           name="name"
-          
           onChange={ (e) => handleChange(e) }
         />
         <InputLabel id="address_field" />

@@ -7,7 +7,7 @@ const MyPaper = styled(Paper)(() => ({
 }));
 const MyButton = styled(Button)(() => ({
 }));
-const MyContainer = styled(Container)(() =>({
+const MyContainer = styled(Container)(() => ({
 }));
 
 export const PaperEdited = styled(MyPaper)(() => ({
@@ -16,7 +16,6 @@ export const PaperEdited = styled(MyPaper)(() => ({
   padding: '2rem',
   mr: 2,
 }));
-
 
 export const ButtonEdited = styled(MyButton)(() => ({
   display: 'block',
@@ -31,7 +30,7 @@ export const ContainerTitleText = styled(MyContainer)(() => ({
   alignItems: 'center',
   marginBottom: '1rem',
   width: '1000px',
-  padding: '0 !important'  
+  padding: '0 !important',
 }));
 
 export function GridEdited({ children }) {
@@ -52,5 +51,3 @@ export function GridEdited({ children }) {
 GridEdited.propTypes = {
   children: PropTypes.element.isRequired,
 };
-
-
