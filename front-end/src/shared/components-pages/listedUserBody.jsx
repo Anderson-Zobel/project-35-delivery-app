@@ -1,7 +1,8 @@
 import React, { useContext, useEffect } from 'react';
-import { Table, TableBody, TableRow, TableCell, IconButton } from '@mui/material';
+import { TableBody, TableRow, TableCell, IconButton } from '@mui/material';
 import { Delete } from '@mui/icons-material';
 import { getUsers } from '../services/api';
+import { getUsers, adminRequestDeleteUser } from '../services/api';
 import Context from '../contexts/Context';
 
 export default function ListedUserBody() {
@@ -14,6 +15,14 @@ export default function ListedUserBody() {
     }
     fetchAPI();
   }, [setUsers]);
+
+  const handleClick = async (userId) => {
+    const { token } = JSON.parse(localStorage.getItem('user'));
+    await adminRequestDeleteUser(userId, token);
+
+    const newUsers = users.filter((u) => u.id !== userId);
+    setUsers(newUsers);
+  };
   return (
       <TableBody>
         { users.map((item, index) => (
@@ -47,6 +56,7 @@ export default function ListedUserBody() {
               <IconButton 
                 aria-label="delete" size="large"
                 data-testid={ `admin_manage__element-user-table-remove-${index}` }
+                onClick={ () => handleClick(item.id) }
               >
                 <Delete fontSize="inherit" />
               </IconButton>

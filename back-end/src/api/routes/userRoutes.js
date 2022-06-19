@@ -28,6 +28,12 @@ user.post(
   userController.adminCreateUser,
 );
 
+user.delete(
+  '/admin/remove/:id',
+  tokenValidator,
+  userController.remove,
+);
+
 user.get('/seller',
   userController.getSellers);
 

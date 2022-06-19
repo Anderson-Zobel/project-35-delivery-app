@@ -29,6 +29,17 @@ export const adminRequestRegister = async (body, token) => {
   }
 };
 
+export const adminRequestDeleteUser = async (id, token) => {
+  try {
+    const header = { headers: { authorization: token } };
+
+    const { data } = await apiConfig.delete(`/admin/remove/${id}`, header);
+    return data;
+  } catch (error) {
+    return error.response;
+  }
+};
+
 export const getProducts = async () => {
   try {
     const { data } = await apiConfig.get('/products');
@@ -121,4 +132,5 @@ export default {
   setOrderStatusById,
   getOrderBySellerId,
   getUsers,
+  adminRequestDeleteUser,
 };
