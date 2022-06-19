@@ -1,4 +1,10 @@
-const { loginService, createUser, findSellers, getUsers } = require('../services/userService');
+const { 
+    loginService, 
+    createUser, 
+    findSellers, 
+    getUsers, 
+    deleteUser,
+} = require('../services/userService');
 
 const login = async (req, res, _next) => {
     const { email, password } = req.body;
@@ -49,10 +55,23 @@ const getSellers = async (_req, res, _next) => {
     return res.status(201).json({ sellers });
 };
 
+const remove = async (req, res, _next) => {
+    const token = req.user; 
+    if (token.role !== 'administrator') {
+        return res.status(401).json({ error: 'User not authorized' });
+    }
+    const { id } = req.params;
+    
+    await deleteUser(id);
+    
+    return res.status(204).end();
+};
+
 module.exports = {
     login,
     create,
     getSellers,
     getAllUsers,
     adminCreateUser,
+    remove,
 };
