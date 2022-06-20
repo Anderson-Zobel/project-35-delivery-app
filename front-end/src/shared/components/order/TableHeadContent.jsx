@@ -49,7 +49,7 @@ export default function TableHeadContent() {
   const testId = `${role}_order_details__element-order-`;
 
   return (
-    <TableHead>
+    <>
       <Typography>
         Pedido:
         <span data-testid={ `${testId}details-label-order-id` }>
@@ -97,13 +97,15 @@ export default function TableHeadContent() {
           </>
         ) : null}
       </Typography>
-      <TableRow>
-        <TableCell>Item</TableCell>
-        <TableCell align="right">Descrição</TableCell>
-        <TableCell align="right">Quantidade</TableCell>
-        <TableCell align="right">Valor Unitário</TableCell>
-        <TableCell align="right">Sub-total</TableCell>
-      </TableRow>
-    </TableHead>
+      <TableHead>
+        <TableRow>
+          <TableCell>Item</TableCell>
+          <TableCell align="right">Descrição</TableCell>
+          <TableCell align="right">Quantidade</TableCell>
+          <TableCell align="right">Valor Unitário</TableCell>
+          <TableCell align="right">Sub-total</TableCell>
+        </TableRow>
+      </TableHead>
+    </>
   );
 }
