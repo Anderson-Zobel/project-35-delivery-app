@@ -2,7 +2,6 @@ const { Sale, SaleProduct, Product, User } = require('../../database/models');
 const { findUserId } = require('./userService');
 
 const createSaleProduct = async (products, order) => {
-  console.log(order.order.dataValues.id);
   const { id } = order.order.dataValues;
   const promises = await products.map(async (product) => {
     await SaleProduct.create({

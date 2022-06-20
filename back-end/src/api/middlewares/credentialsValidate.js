@@ -21,7 +21,6 @@ const isValid = (req, res, next) => {
 
   if (error) {
     const [code, message] = error.message.split('|');
-    console.log(code, message);
     return res.status(Number(code)).json({ message });
   }  
 
