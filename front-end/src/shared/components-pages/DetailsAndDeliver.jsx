@@ -23,7 +23,6 @@ export default function DetailsAndDeliver() {
   const totalPrice = parseFloat(getTotalAmount().replace(',', '.'));
   const cart = JSON.parse(localStorage.getItem('carrinho'));
   const user = JSON.parse(localStorage.getItem('user'));
-  console.log(totalPrice);
 
   const body = {
     email: user.email,
@@ -54,22 +53,31 @@ export default function DetailsAndDeliver() {
       setNumber(target.value);
     }
   }
+  const boxStyle = {
+    minWidth: 120,
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    mb: '1rem',
+  };
 
   return (
     <Paper sx={ { padding: '2rem', mt: 2 } }>
-      <Box sx={ { minWidth: 120 } }>
-        <InputLabel id="seller_select">Vendedor</InputLabel>
+      <Box sx={ boxStyle }>
+        <InputLabel id="seller_select" />
         <NativeSelect
+          sx={ { width: '20%', margin: '1rem' } }
           inputProps={ {
             'data-testid': 'customer_checkout__select-seller',
           } }
           labelId="seller_select"
           id="seller"
           label="Seller"
+          size="small"
           value={ selectedSeller }
           onChange={ (e) => handleSelectChange(e) }
         >
-          <option> -- select an option -- </option>
+          <option> Selecione um vendedor </option>
           {sellers
             ? sellers.map((seller) => (
               <option key={ seller.id } value={ seller.id }>
@@ -78,22 +86,26 @@ export default function DetailsAndDeliver() {
             ))
             : null}
         </NativeSelect>
-        <InputLabel id="address_field">Endereço</InputLabel>
+        <InputLabel id="address_field" />
         <TextField
+          sx={ { width: '50%', margin: '1rem' } }
           inputProps={ { 'data-testid': 'customer_checkout__input-address' } }
           variant="filled"
           label="Endereço"
           labelId="address_field"
           value={ address }
+          size="small"
           name="address"
           onChange={ (e) => handleChange(e) }
         />
-        <InputLabel id="number_field">Number</InputLabel>
+        <InputLabel id="number_field" />
         <TextField
+          sx={ { width: '20%', margin: '1rem' } }
           inputProps={ {
             'data-testid': 'customer_checkout__input-addressNumber',
           } }
           variant="filled"
+          size="small"
           label="Número"
           labelId="number_field"
           value={ number }
@@ -101,13 +113,17 @@ export default function DetailsAndDeliver() {
           onChange={ (e) => handleChange(e) }
         />
       </Box>
-
-      <Button
-        data-testid="customer_checkout__button-submit-order"
-        onClick={ () => handleClick() }
-      >
-        Finalizar Pedido
-      </Button>
+      <Box sx={ { textAlign: 'center' } }>
+        <Button
+          variant="contained"
+          color="success"
+          size="large"
+          data-testid="customer_checkout__button-submit-order"
+          onClick={ () => handleClick() }
+        >
+          Finalizar Pedido
+        </Button>
+      </Box>
     </Paper>
   );
 }
