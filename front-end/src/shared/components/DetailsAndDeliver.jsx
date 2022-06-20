@@ -28,7 +28,7 @@ export default function DetailsAndDeliver() {
     fetchAPI();
   }, []);
 
-  const totalPrice = parseFloat(getTotalAmount().replace(',', '.'));
+  const totalPrice = parseFloat(getTotalAmount());
   const cart = JSON.parse(localStorage.getItem('carrinho'));
   const user = JSON.parse(localStorage.getItem('user'));
 
@@ -81,7 +81,6 @@ export default function DetailsAndDeliver() {
             inputProps={ {
               'data-testid': 'customer_checkout__select-seller',
             } }
-            labelId="seller_select"
             id="seller_select"
             value={ selectedSeller }
             label="Vendedor"
@@ -100,7 +99,6 @@ export default function DetailsAndDeliver() {
           inputProps={ { 'data-testid': 'customer_checkout__input-address' } }
           variant="filled"
           label="Endereço"
-          labelId="address_field"
           value={ address }
           size="medium"
           name="address"
@@ -115,7 +113,6 @@ export default function DetailsAndDeliver() {
           variant="filled"
           size="medium"
           label="Número"
-          labelId="number_field"
           value={ number }
           name="number"
           onChange={ (e) => handleChange(e) }
