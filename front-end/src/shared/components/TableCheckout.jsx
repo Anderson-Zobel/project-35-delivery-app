@@ -30,13 +30,14 @@ export default function TableCheckout() {
             <TableCell>Remover Item</TableCell>
           </TableRow>
         </TableHead>
-        <TableBody>
+        <TableBody
+          sx={
+            { '&:last-child td, &:last-child th': { border: 0, textAlign: 'center' } }
+          }
+        >
           {userCart.map((item, index) => (
             <TableRow
               key={ userCart.name }
-              sx={
-                { '&:last-child td, &:last-child th': { border: 0, textAlign: 'center' } }
-              }
             >
               <TableCell
                 data-testid={ `${testId}item-number-${index}` }
