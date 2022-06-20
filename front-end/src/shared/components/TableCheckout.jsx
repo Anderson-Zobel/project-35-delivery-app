@@ -35,9 +35,9 @@ export default function TableCheckout() {
             { '&:last-child td, &:last-child th': { border: 0, textAlign: 'center' } }
           }
         >
-          {userCart.map((item, index) => (
+          { userCart.map((item, index) => (
             <TableRow
-              key={ userCart.name }
+              key={ item.name }
             >
               <TableCell
                 data-testid={ `${testId}item-number-${index}` }
