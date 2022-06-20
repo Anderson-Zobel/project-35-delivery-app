@@ -51,11 +51,13 @@ export default function ListedUserBody() {
           >
             { item.role }
           </TableCell>
-          <TableCell align="center">
+          <TableCell
+            align="center"
+            data-testid={ `admin_manage__element-user-table-remove-${index}` }
+          >
             <IconButton
               aria-label="delete"
               size="large"
-              data-testid={ `admin_manage__element-user-table-remove-${index}` }
               onClick={ () => handleClick(item.id) }
             >
               <Delete fontSize="inherit" />
