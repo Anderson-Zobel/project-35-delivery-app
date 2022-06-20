@@ -17,10 +17,10 @@ export default function Login() {
     if (user) {
       setLogged({ role: user.role });
     }
-  }, []);
-  if (logged) {
-    navigate('../customer/products');
-  }
+    if (logged) {
+      navigate('../customer/products');
+    }
+  }, [logged, navigate]);
 
   const enableButton = () => {
     const numeroMinimo = 5;
