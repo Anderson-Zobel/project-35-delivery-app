@@ -14,16 +14,19 @@ export default function Provider({ children }) {
 
   useEffect(() => {
     async function fetchAPI() {
+      const shopCart = JSON.parse(localStorage.getItem('carrinho'));
       const response = await getProducts();
       setProducts(response);
+      setUserCart(shopCart);
     }
     fetchAPI();
-  }, []);
+  }, [userCart]);
 
   function getTotalAmount() {
+    const shopCart = JSON.parse(localStorage.getItem('carrinho'));
     let total = 0;
-    if (userCart) {
-      userCart.forEach((product) => {
+    if (shopCart) {
+      shopCart.forEach((product) => {
         const totalProduct = product.count * product.price;
         total += totalProduct;
       });
@@ -33,7 +36,7 @@ export default function Provider({ children }) {
   }
 
   const addProductCart = (id, name, count, price) => {
-    const cart = [...userCart];
+    const cart = JSON.parse(localStorage.getItem('carrinho'));
     const item = cart.find((p) => p.id === id);
     if (!item) {
       cart.push({ id, name, count, price });
