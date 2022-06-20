@@ -66,10 +66,9 @@ export default function TableCheckout() {
               >
                 {(item.price * item.count).toFixed(2).replace('.', ',')}
               </TableCell>
-              <TableCell
-                data-testid={ `${testId}remove-${index}` }
-              >
+              <TableCell>
                 <IconButton
+                  data-testid={ `${testId}remove-${index}` }
                   aria-label="delete"
                   size="large"
                   onClick={ () => removeProductsById(item.id) }
