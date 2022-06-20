@@ -1,6 +1,5 @@
 import React, { useState, useContext } from 'react';
 import {
-  Container,
   InputLabel,
   TextField,
   NativeSelect,
@@ -11,14 +10,7 @@ import {
 } from '@mui/material';
 import Context from '../contexts/Context';
 import { adminRequestRegister } from '../services/api';
-
-const style = {
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center',
-  marginBottom: '1rem',
-};
+import { ContainerTitleText } from '../../style/Styles-MUI';
 
 export default function RegisterUser() {
   const { setUsers } = useContext(Context);
@@ -66,12 +58,9 @@ export default function RegisterUser() {
   };
 
   return (
-    <Container
-      style={ style }
-    >
+    <ContainerTitleText>
       <Box
-        component="span"
-        sx={ { p: 2, border: '1px dashed grey', textAlign: 'center' } }
+        sx={ { p: 1, mr: 'auto', fontSize: '1.5rem' } }
       >
         Cadastrar Novo Usuário
       </Box>
@@ -79,13 +68,16 @@ export default function RegisterUser() {
       <Paper
         sx={ {
           display: 'flex',
-          padding: '1rem',
-          justifyContent: 'space-around',
+          // margin: '1rem',
+          // justifyContent: 'space-around',
           width: '1000px',
+          align: 'center',
         } }
       >
         <InputLabel id="seller_select" />
         <TextField
+          sx={ { margin: '1rem' } }
+          size="small"
           inputProps={ { 'data-testid': 'admin_manage__input-name' } }
           variant="filled"
           label="Nome"
@@ -96,6 +88,8 @@ export default function RegisterUser() {
         />
         <InputLabel id="address_field" />
         <TextField
+          size="small"
+          sx={ { margin: '1rem' } }
           inputProps={ { 'data-testid': 'admin_manage__input-email' } }
           variant="filled"
           label="Email"
@@ -106,6 +100,8 @@ export default function RegisterUser() {
         />
         <InputLabel id="number_field" />
         <TextField
+          sx={ { margin: '1rem' } }
+          size="small"
           inputProps={ {
             'data-testid': 'admin_manage__input-password',
           } }
@@ -118,6 +114,7 @@ export default function RegisterUser() {
           onChange={ (e) => handleChange(e) }
         />
         <NativeSelect
+          sx={ { margin: '1rem' } }
           inputProps={ {
             'data-testid': 'admin_manage__select-role',
           } }
@@ -134,6 +131,8 @@ export default function RegisterUser() {
 
         </NativeSelect>
         <Button
+          variant="contained"
+          sx={ { margin: '1rem' } }
           disabled={ enableButton() }
           onClick={ () => handleClick() }
           data-testid="admin_manage__button-register"
@@ -149,6 +148,6 @@ export default function RegisterUser() {
           Usuario com nome ou email já cadastrado.
         </Alert>
       ) : null}
-    </Container>
+    </ContainerTitleText>
   );
 }

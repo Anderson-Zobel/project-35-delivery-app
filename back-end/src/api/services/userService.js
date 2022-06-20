@@ -43,10 +43,13 @@ const findUserId = async (email) => User.findOne({
   where: { email },
 });
 
+const deleteUser = async (id) => User.destroy({ where: { id } });
+
 module.exports = {
   loginService,
   createUser,
   findSellers,
   findUserId,
   getUsers,
+  deleteUser,
 };

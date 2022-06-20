@@ -1,9 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Paper, Grid, Button } from '@mui/material';
+import { Paper, Grid, Button, Container } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
 const MyPaper = styled(Paper)(() => ({
+}));
+const MyButton = styled(Button)(() => ({
+}));
+const MyContainer = styled(Container)(() => ({
 }));
 
 export const PaperEdited = styled(MyPaper)(() => ({
@@ -13,13 +17,20 @@ export const PaperEdited = styled(MyPaper)(() => ({
   mr: 2,
 }));
 
-const MyButton = styled(Button)(() => ({
-}));
-
 export const ButtonEdited = styled(MyButton)(() => ({
   display: 'block',
   padding: '10px',
   margin: 'auto',
+}));
+
+export const ContainerTitleText = styled(MyContainer)(() => ({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+  marginBottom: '1rem',
+  width: '1000px',
+  padding: '0 !important',
 }));
 
 export function GridEdited({ children }) {
@@ -40,22 +51,3 @@ export function GridEdited({ children }) {
 GridEdited.propTypes = {
   children: PropTypes.element.isRequired,
 };
-
-// export function ContainerCheckout({ children }) {
-//   return (
-//     <Container
-//       container
-//       spacing={ 0 }
-//       direction="column"
-//       alignItems="center"
-//       justifyContent="center"
-//       style={ { minHeight: '100vh' } }
-//     >
-//       { children }
-//     </Container>
-//   );
-// }
-
-// ContainerCheckout.propTypes = {
-//   children: PropTypes.element.isRequired,
-// };

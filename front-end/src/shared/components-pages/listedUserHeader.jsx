@@ -1,19 +1,16 @@
 import React from 'react';
-import { Table, TableHead, TableRow, TableCell } from '@mui/material';
+import { TableHead, TableRow, TableCell } from '@mui/material';
 
 export default function ListedUserHeader() {
   return (
-    <Table>
-      <TableHead>
-        <TableRow>
-          <TableCell>Item</TableCell>
-          <TableCell>Nome</TableCell>
-          <TableCell>E-mail</TableCell>
-          <TableCell>Tipo</TableCell>
-          <TableCell>Excluir</TableCell>
-        </TableRow>
-      </TableHead>
-    </Table>
-
+    <TableHead>
+      <TableRow>
+        <TableCell align="center">Item</TableCell>
+        <TableCell align="center">Nome</TableCell>
+        <TableCell align="center">E-mail</TableCell>
+        <TableCell align="center">Tipo</TableCell>
+        <TableCell align="center">Excluir</TableCell>
+      </TableRow>
+    </TableHead>
   );
 }
