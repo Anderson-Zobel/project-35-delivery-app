@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   AppBar,
   Stack,
@@ -6,20 +7,28 @@ import {
   Typography,
   Button,
   Link,
+  IconButton,
 } from '@mui/material';
-
-function handleClick() {
-  localStorage.removeItem('user');
-}
-
-function getName() {
-  const user = localStorage.getItem('user');
-  const userObj = JSON.parse(user);
-  return userObj.name;
-}
+import { Settings } from '@mui/icons-material';
 
 export default function NavBar() {
   const { role } = JSON.parse(localStorage.getItem('user'));
+  const navigate = useNavigate();
+
+  function handleClick() {
+    localStorage.removeItem('user');
+  }
+
+  function getName() {
+    const user = localStorage.getItem('user');
+    const userObj = JSON.parse(user);
+    return userObj.name;
+  }
+
+  const navigateClick = () => {
+    navigate('../admin/manage', { replace: true });
+  };
+
   return (
     <AppBar position="static" sx={ { marginBottom: '2rem' } }>
       <Toolbar sx={ { justifyContent: 'space-between' } }>
@@ -36,16 +45,29 @@ export default function NavBar() {
               </Link>
             </Button>
           ) : null}
-          <Button color="inherit">
-            <Link
-              href={ `/${role}/orders` }
+          { role === 'administrator' ? (
+            <IconButton
               color="inherit"
-              underline="none"
+              size="large"
               data-testid="customer_products__element-navbar-link-orders"
+              onClick={ () => navigateClick() }
             >
-              Pedidos
-            </Link>
-          </Button>
+              <Settings
+                size="large"
+                fontSize="inherit"
+              />
+            </IconButton>
+          ) : (
+            <Button color="inherit">
+              <Link
+                href={ `/${role}/orders` }
+                color="inherit"
+                underline="none"
+                data-testid="customer_products__element-navbar-link-orders"
+              >
+                Pedidos
+              </Link>
+            </Button>)}
         </Stack>
         <Typography
           sx={ { fontWeight: 'bold' } }
