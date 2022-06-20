@@ -1,7 +1,7 @@
 import { Box } from '@mui/system';
 import React, { useEffect, useState } from 'react';
-import NavBar from '../shared/components-pages/NavBar';
-import OrderCard from '../shared/components-pages/OrderCard';
+import NavBar from '../shared/components/NavBar';
+import OrderCard from '../shared/components/OrderCard';
 import { getOrderBySellerId } from '../shared/services/api';
 
 export default function SellerOrders() {

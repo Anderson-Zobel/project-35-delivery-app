@@ -4,8 +4,8 @@ import {
   Paper,
 } from '@mui/material';
 import { useParams } from 'react-router-dom';
-import NavBar from '../shared/components-pages/NavBar';
-import TableOrder from '../shared/components-pages/order/TableOrder';
+import NavBar from '../shared/components/NavBar';
+import TableOrder from '../shared/components/order/TableOrder';
 import Context from '../shared/contexts/Context';
 import { getOrderById } from '../shared/services/api';
 

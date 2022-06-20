@@ -68,8 +68,6 @@ export default function RegisterUser() {
       <Paper
         sx={ {
           display: 'flex',
-          // margin: '1rem',
-          // justifyContent: 'space-around',
           width: '1000px',
           align: 'center',
         } }
@@ -82,7 +80,6 @@ export default function RegisterUser() {
           variant="filled"
           label="Nome"
           labelId="name_field"
-          // value={}
           name="name"
           onChange={ (e) => handleChange(e) }
         />
@@ -94,7 +91,6 @@ export default function RegisterUser() {
           variant="filled"
           label="Email"
           labelId="email_field"
-          // value={}
           name="email"
           onChange={ (e) => handleChange(e) }
         />
@@ -109,7 +105,6 @@ export default function RegisterUser() {
           label="Senha"
           labelId="password_field"
           type="password"
-          // value={ number }
           name="password"
           onChange={ (e) => handleChange(e) }
         />
@@ -122,7 +117,6 @@ export default function RegisterUser() {
           id="tipo"
           label="Tipo"
           name="role"
-          // value={}
           onChange={ (e) => handleChange(e) }
         >
           <option disabled selected>Tipo</option>

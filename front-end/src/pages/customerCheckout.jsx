@@ -1,9 +1,9 @@
 import React from 'react';
 import { Container, Paper } from '@mui/material';
-import NavBar from '../shared/components-pages/NavBar';
-import TableCheckout from '../shared/components-pages/TableCheckout';
-import TotalPriceCheckout from '../shared/components-pages/TotalPriceCheckout';
-import DetailsAndDeliver from '../shared/components-pages/DetailsAndDeliver';
+import NavBar from '../shared/components/NavBar';
+import TableCheckout from '../shared/components/TableCheckout';
+import TotalPriceCheckout from '../shared/components/TotalPriceCheckout';
+import DetailsAndDeliver from '../shared/components/DetailsAndDeliver';
 
 export default function CustomerCheckout() {
   return (

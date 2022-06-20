@@ -1,10 +1,10 @@
 import { Paper, Box, Table } from '@mui/material';
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import ListedUserBody from '../shared/components-pages/listedUserBody';
-import ListedUserHeader from '../shared/components-pages/listedUserHeader';
-import NavBar from '../shared/components-pages/NavBar';
-import RegisterUser from '../shared/components-pages/registerUser';
+import ListedUserBody from '../shared/components/listedUserBody';
+import ListedUserHeader from '../shared/components/listedUserHeader';
+import NavBar from '../shared/components/NavBar';
+import RegisterUser from '../shared/components/registerUser';
 import { ContainerTitleText } from '../style/Styles-MUI';
 
 export default function AdminPage() {
