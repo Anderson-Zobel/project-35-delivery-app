@@ -14,7 +14,7 @@ export default function TextComponent({ value, text, dataTestId, index, user }) 
 }
 
 TextComponent.propTypes = {
-  value: PropTypes.number.isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   dataTestId: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
   index: PropTypes.number.isRequired,
