@@ -2,7 +2,9 @@ import React, { useState, useContext } from 'react';
 import {
   InputLabel,
   TextField,
-  NativeSelect,
+  FormControl,
+  Select,
+  MenuItem,
   Paper,
   Button,
   Box,
@@ -75,55 +77,55 @@ export default function RegisterUser() {
         <InputLabel id="seller_select" />
         <TextField
           sx={ { margin: '1rem' } }
-          size="small"
+          size="medium"
           inputProps={ { 'data-testid': 'admin_manage__input-name' } }
           variant="filled"
           label="Nome"
-          labelId="name_field"
           name="name"
           onChange={ (e) => handleChange(e) }
         />
         <InputLabel id="address_field" />
         <TextField
-          size="small"
+          size="medium"
           sx={ { margin: '1rem' } }
           inputProps={ { 'data-testid': 'admin_manage__input-email' } }
           variant="filled"
           label="Email"
-          labelId="email_field"
           name="email"
           onChange={ (e) => handleChange(e) }
         />
         <InputLabel id="number_field" />
         <TextField
           sx={ { margin: '1rem' } }
-          size="small"
+          size="medium"
           inputProps={ {
             'data-testid': 'admin_manage__input-password',
           } }
           variant="filled"
           label="Senha"
-          labelId="password_field"
           type="password"
           name="password"
           onChange={ (e) => handleChange(e) }
         />
-        <NativeSelect
-          sx={ { margin: '1rem' } }
-          inputProps={ {
-            'data-testid': 'admin_manage__select-role',
-          } }
-          labelId="tipo_select"
-          id="tipo"
-          label="Tipo"
-          name="role"
-          onChange={ (e) => handleChange(e) }
+        <FormControl
+          sx={ { m: 1, width: '20%', margin: '1rem', justifyContent: 'center' } }
+          size="medium"
         >
-          <option disabled selected>Tipo</option>
-          <option value="seller"> Vendedor </option>
-          <option value="customer"> Usuario </option>
-
-        </NativeSelect>
+          <InputLabel id="seller_select"> Tipo </InputLabel>
+          <Select
+            inputProps={ {
+              'data-testid': 'admin_manage__select-role',
+            } }
+            name="role"
+            value={ newUser.role }
+            id="seller_select"
+            label="Tipo"
+            onChange={ (e) => handleChange(e) }
+          >
+            <MenuItem value="customer">Cliente</MenuItem>
+            <MenuItem value="seller">Vendedor</MenuItem>
+          </Select>
+        </FormControl>
         <Button
           variant="contained"
           sx={ { margin: '1rem' } }
