@@ -56,11 +56,13 @@ export default function OrderCard({ order, index, user }) {
 }
 
 OrderCard.propTypes = {
-  order: PropTypes.objectOf({
-    id: PropTypes.string,
+  order: PropTypes.shape({
+    id: PropTypes.number,
     status: PropTypes.string,
     saleDate: PropTypes.string,
-    totalPrice: PropTypes.number,
+    totalPrice: PropTypes.string,
+    deliveryAddress: PropTypes.string,
+    deliveryNumber: PropTypes.string,
   }).isRequired,
   index: PropTypes.number.isRequired,
   user: PropTypes.string.isRequired,
