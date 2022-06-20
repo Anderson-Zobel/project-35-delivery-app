@@ -99,12 +99,10 @@ export default function CardDrinks({ product }) {
 }
 
 CardDrinks.propTypes = {
-  product: PropTypes.objectOf({
-    product: PropTypes.objectOf({
-      id: PropTypes.number,
-      name: PropTypes.string,
-      price: PropTypes.string,
-      urlImage: PropTypes.string,
-    }),
+  product: PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+    price: PropTypes.string,
+    urlImage: PropTypes.string,
   }).isRequired,
 };
