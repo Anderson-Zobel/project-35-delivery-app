@@ -65,7 +65,6 @@ export default function Register() {
           fullWidth
           placeholder="email"
           name="email"
-          // value={}
           onChange={ handleChange }
           type="email"
           inputProps={ {

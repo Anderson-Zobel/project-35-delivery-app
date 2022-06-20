@@ -44,7 +44,6 @@ export default function CustomerProducts() {
       ))}
       <Fab
         variant="extended"
-        // sx={ { pr: 0.1, pb: 0.1, position: 'fixed' } }
         style={ style }
         data-testid="customer_products__button-cart"
         onClick={ () => handleClick() }

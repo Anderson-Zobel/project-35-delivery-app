@@ -38,7 +38,6 @@ export default function AdminPage() {
             <Paper
               sx={ {
                 display: 'flex',
-                // padding: '1rem',
                 justifyContent: 'center',
                 width: '1000px',
                 margin: 'auto' } }

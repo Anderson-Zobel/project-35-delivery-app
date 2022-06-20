@@ -68,7 +68,6 @@ export default function Login() {
           fullWidth
           placeholder="email"
           name="email"
-          // value={}
           onChange={ handleChange }
           type="email"
           inputProps={ {
@@ -80,7 +79,6 @@ export default function Login() {
           fullWidth
           placeholder="******"
           name="password"
-          // value={}
           onChange={ handleChange }
           type="password"
           inputProps={ {
@@ -88,7 +86,6 @@ export default function Login() {
           } }
         />
         <Button
-          // classes={ {root: "button-login" }}
           type="button"
           data-testid="common_login__button-login"
           disabled={ enableButton() }
