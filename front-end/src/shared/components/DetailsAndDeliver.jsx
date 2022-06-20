@@ -1,6 +1,14 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { InputLabel, NativeSelect, Paper, Box, TextField, Button } from '@mui/material';
+import {
+  InputLabel,
+  Paper,
+  Box,
+  TextField,
+  Button,
+  Select,
+  FormControl,
+  MenuItem } from '@mui/material';
 import { createOrder, getSellers } from '../services/api';
 import Context from '../contexts/Context';
 
@@ -64,28 +72,28 @@ export default function DetailsAndDeliver() {
   return (
     <Paper sx={ { padding: '2rem', mt: 2 } }>
       <Box sx={ boxStyle }>
-        <InputLabel id="seller_select" />
-        <NativeSelect
-          sx={ { width: '20%', margin: '1rem' } }
-          inputProps={ {
-            'data-testid': 'customer_checkout__select-seller',
-          } }
-          labelId="seller_select"
-          id="seller"
-          label="Seller"
-          size="small"
-          value={ selectedSeller }
-          onChange={ (e) => handleSelectChange(e) }
+        <FormControl
+          sx={ { m: 1, width: '20%', margin: '1rem', justifyContent: 'center' } }
+          size="medium"
         >
-          <option> Selecione um vendedor </option>
-          {sellers
-            ? sellers.map((seller) => (
-              <option key={ seller.id } value={ seller.id }>
-                {seller.name}
-              </option>
-            ))
-            : null}
-        </NativeSelect>
+          <InputLabel id="seller_select"> Vendedor </InputLabel>
+          <Select
+            inputProps={ {
+              'data-testid': 'customer_checkout__select-seller',
+            } }
+            labelId="seller_select"
+            id="seller_select"
+            value={ selectedSeller }
+            label="Vendedor"
+            onChange={ (e) => handleSelectChange(e) }
+          >
+            {sellers
+              ? sellers.map((seller) => (
+                <MenuItem key={ seller.id } value={ seller.id }>{seller.name}</MenuItem>
+              ))
+              : null}
+          </Select>
+        </FormControl>
         <InputLabel id="address_field" />
         <TextField
           sx={ { width: '50%', margin: '1rem' } }
@@ -94,7 +102,7 @@ export default function DetailsAndDeliver() {
           label="Endereço"
           labelId="address_field"
           value={ address }
-          size="small"
+          size="medium"
           name="address"
           onChange={ (e) => handleChange(e) }
         />
@@ -105,7 +113,7 @@ export default function DetailsAndDeliver() {
             'data-testid': 'customer_checkout__input-addressNumber',
           } }
           variant="filled"
-          size="small"
+          size="medium"
           label="Número"
           labelId="number_field"
           value={ number }
