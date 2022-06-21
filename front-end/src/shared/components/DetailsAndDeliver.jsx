@@ -28,7 +28,8 @@ export default function DetailsAndDeliver() {
     fetchAPI();
   }, []);
 
-  const totalPrice = parseFloat(getTotalAmount());
+  const totalPrice = parseFloat(getTotalAmount().replace(',', '.'));
+
   const cart = JSON.parse(localStorage.getItem('carrinho'));
   const user = JSON.parse(localStorage.getItem('user'));
 
