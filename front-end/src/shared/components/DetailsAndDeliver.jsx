@@ -8,6 +8,7 @@ import {
   Button,
   Select,
   FormControl,
+  Alert,
   MenuItem } from '@mui/material';
 import { createOrder, getSellers } from '../services/api';
 import Context from '../contexts/Context';
@@ -19,6 +20,19 @@ export default function DetailsAndDeliver() {
   const [selectedSeller, setSelectedSeller] = useState('');
   const [address, setAddress] = useState('');
   const [number, setNumber] = useState('');
+  const [cartEmpty, setCartEmpty] = useState(false);
+
+  const cart = JSON.parse(localStorage.getItem('carrinho'));
+  const user = JSON.parse(localStorage.getItem('user'));
+  const totalPrice = parseFloat(getTotalAmount().replace(',', '.'));
+
+  const boxStyle = {
+    minWidth: 120,
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    mb: '1rem',
+  };
 
   useEffect(() => {
     async function fetchAPI() {
@@ -28,26 +42,24 @@ export default function DetailsAndDeliver() {
     fetchAPI();
   }, []);
 
-  const totalPrice = parseFloat(getTotalAmount().replace(',', '.'));
-
-  const cart = JSON.parse(localStorage.getItem('carrinho'));
-  const user = JSON.parse(localStorage.getItem('user'));
-
-  const body = {
-    email: user.email,
-    sellerId: +selectedSeller,
-    totalPrice,
-    deliveryAddress: address,
-    deliveryNumber: number,
-    status: 'Pendente',
-    cart,
-  };
-
   async function handleClick() {
-    const userToken = user.token;
-    const response = await createOrder(body, userToken);
+    if (cart !== null) {
+      const userToken = user.token;
+      const body = {
+        email: user.email,
+        sellerId: +selectedSeller,
+        totalPrice,
+        deliveryAddress: address,
+        deliveryNumber: number,
+        status: 'Pendente',
+        cart,
+      };
+      const response = await createOrder(body, userToken);
 
-    navigate(`../customer/orders/${response.order.id}`, { replace: true });
+      navigate(`../customer/orders/${response.order.id}`, { replace: true });
+    } else {
+      setCartEmpty(true);
+    }
   }
 
   function handleSelectChange(event) {
@@ -62,13 +74,6 @@ export default function DetailsAndDeliver() {
       setNumber(target.value);
     }
   }
-  const boxStyle = {
-    minWidth: 120,
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    mb: '1rem',
-  };
 
   return (
     <Paper sx={ { padding: '2rem', mt: 2 } }>
@@ -129,6 +134,14 @@ export default function DetailsAndDeliver() {
         >
           Finalizar Pedido
         </Button>
+        {cartEmpty ? (
+          <Alert
+            severity="error"
+            data-testid="admin_manage__element-invalid-register"
+          >
+            Não existe nenhum produto no carrinho para finalizar o pedido.
+          </Alert>
+        ) : null}
       </Box>
     </Paper>
   );
