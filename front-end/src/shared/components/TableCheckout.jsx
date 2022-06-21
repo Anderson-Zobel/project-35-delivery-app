@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import {
   TableHead,
   TableRow,
@@ -14,7 +14,18 @@ import Context from '../contexts/Context';
 const testId = 'customer_checkout__element-order-table-';
 
 export default function TableCheckout() {
-  const { removeProductsById, userCart } = useContext(Context);
+  const { removeProductsById, userCart, setUserCart } = useContext(Context);
+
+  useEffect(() => {
+    async function setCart() {
+      if (userCart.length === 0) {
+        const shopCart = JSON.parse(localStorage.getItem('carrinho'));
+        setUserCart(shopCart);
+      }
+    }
+    setCart();
+  }, []);
+
   return (
     <TableContainer>
       <Table sx={ { minWidth: 650 } } size="small" aria-label="a dense table">
