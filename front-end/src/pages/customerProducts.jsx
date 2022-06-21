@@ -4,7 +4,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useNavigate } from 'react-router-dom';
 import Context from '../shared/contexts/Context';
 import NavBar from '../shared/components/NavBar';
-import CardDrinks from '../shared/components/CardDrinks';
+import CardProduct from '../shared/components/CardProduct';
 
 const style = {
   margin: 0,
@@ -40,7 +40,7 @@ export default function CustomerProducts() {
     <>
       <NavBar />
       {products.map((product, index) => (
-        <CardDrinks product={ product } key={ index } />
+        <CardProduct product={ product } key={ index } />
       ))}
       <Fab
         variant="extended"

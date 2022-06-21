@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import {
   Card,
@@ -12,10 +12,21 @@ import {
 } from '@mui/material';
 import Context from '../contexts/Context';
 
-export default function CardDrinks({ product }) {
-  const { addProductCart, removeProductCart } = useContext(Context);
+export default function CardProduct({ product }) {
+  const { addProductCart, removeProductCart, setDisableCartButton } = useContext(Context);
   const { id, name, urlImage, price } = product;
   const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    async function setInitialCount() {
+      const shopCart = JSON.parse(localStorage.getItem('carrinho'));
+      if (shopCart !== null) {
+        shopCart.map((p) => ((id === p.id) ? setCount(p.count) : null));
+        setDisableCartButton(false);
+      }
+    }
+    setInitialCount();
+  }, [id, setDisableCartButton]);
 
   function incrementCount() {
     const countHandler = count + 1;
@@ -98,7 +109,7 @@ export default function CardDrinks({ product }) {
   );
 }
 
-CardDrinks.propTypes = {
+CardProduct.propTypes = {
   product: PropTypes.shape({
     id: PropTypes.number,
     name: PropTypes.string,
