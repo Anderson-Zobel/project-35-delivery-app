@@ -14,13 +14,11 @@ export default function Provider({ children }) {
 
   useEffect(() => {
     async function fetchAPI() {
-      const shopCart = JSON.parse(localStorage.getItem('carrinho'));
       const response = await getProducts();
       setProducts(response);
-      setUserCart(shopCart);
     }
     fetchAPI();
-  }, [userCart]);
+  }, []);
 
   function getTotalAmount() {
     const shopCart = JSON.parse(localStorage.getItem('carrinho'));
@@ -31,22 +29,27 @@ export default function Provider({ children }) {
         total += totalProduct;
       });
     }
-    setTotalAmount(total.toFixed(2).replace('.', ','));
-    return totalAmount;
+    return total.toFixed(2).replace('.', ',');
   }
 
   const addProductCart = (id, name, count, price) => {
     const cart = JSON.parse(localStorage.getItem('carrinho'));
-    const item = cart.find((p) => p.id === id);
-    if (!item) {
-      cart.push({ id, name, count, price });
+    if (cart !== null) {
+      const item = cart.find((p) => p.id === id);
+      if (!item) {
+        cart.push({ id, name, count, price });
+      } else {
+        item.count = count;
+      }
+      setUserCart(cart);
+      localStorage.setItem('carrinho', JSON.stringify(cart));
+      setDisableCartButton(false);
     } else {
-      item.count = count;
+      const newCart = [{ id, name, count, price }];
+      setUserCart(newCart);
+      localStorage.setItem('carrinho', JSON.stringify(newCart));
+      setDisableCartButton(false);
     }
-    setUserCart(cart);
-    const cartStringFy = JSON.stringify(cart);
-    localStorage.setItem('carrinho', cartStringFy);
-    setDisableCartButton(false);
   };
 
   const removeProductCart = (id, count) => {
@@ -72,8 +75,7 @@ export default function Provider({ children }) {
   };
 
   const removeProductsById = (id) => {
-    const cart = [...userCart];
-    const cartFiltered = cart.filter((p) => p.id !== id);
+    const cartFiltered = userCart.filter((p) => p.id !== id);
     const cartStringFy = JSON.stringify(cartFiltered);
     localStorage.setItem('carrinho', cartStringFy);
     setUserCart(cartFiltered);
@@ -100,6 +102,8 @@ export default function Provider({ children }) {
     setDeliveryStatus,
     users,
     setUsers,
+    setDisableCartButton,
+    setUserCart,
   };
 
   return <Context.Provider value={ myProvider }>{children}</Context.Provider>;
