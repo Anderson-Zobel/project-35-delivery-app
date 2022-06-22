@@ -81,14 +81,15 @@
 ```
 
 - front-end
-`#NÃO ALTERAR
+```
+#NÃO ALTERAR
 ESLINT_NO_DEV_ERRORS=true
 SKIP_PREFLIGHT_CHECK=true
 
 #COMUNICAÇÃO COM A API
 REACT_APP_HOSTNAME=localhost
 REACT_APP_BACKEND_PORT=3001
-`
+```
 4. Rodando a aplicação terá tela de login, como base já existem alguns usuários cadastrados e seus respectivos privilégios, basta usar algum deles para efetuar login.
 
 - Customer - Cliente Zé Birita
