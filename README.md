@@ -73,7 +73,7 @@ SKIP_PREFLIGHT_CHECK=true
 REACT_APP_HOSTNAME=localhost
 REACT_APP_BACKEND_PORT=3001
 ```
-4. Para rodar a apliação rode o seguinte comando na diretório raiz
+4. Para rodar a aplicação rode o seguinte comando no diretório raiz
 ```
 npm start
 ```
