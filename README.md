@@ -69,15 +69,16 @@
 
 3. Configurando as variáveis de ambiente, abaixo o que vem no arquivo .env.example, renomeio para .env e configure as suas variáveis para rodar corretamente a aplicação.
 - back-end
-`NODE_ENV=development
-API_PORT=3001
-MYSQL_HOST=localhost
-MYSQL_PORT=3306
-MYSQL_USER=root
-MYSQL_PASSWORD=senhaDoDb
-MYSQL_DB_NAME=delivery-app
-EVAL_ALWAYS_RESTORE_DEV_DB=true
-`
+  ```
+  NODE_ENV=development 
+  API_PORT=3001
+  MYSQL_HOST=localhost
+  MYSQL_PORT=3306
+  MYSQL_USER=root
+  MYSQL_PASSWORD=senhaDoDb
+  MYSQL_DB_NAME=delivery-app
+  EVAL_ALWAYS_RESTORE_DEV_DB=true
+```
 
 - front-end
 `#NÃO ALTERAR
