@@ -52,7 +52,8 @@ npm install
 ```
 
 3. Configurando as variáveis de ambiente, abaixo o que vem no arquivo .env.example, renomeio para .env e configure as suas variáveis para rodar corretamente a aplicação.
-back-end
+
+- .env Back-end
 ```
   NODE_ENV=development 
   API_PORT=3001
@@ -63,7 +64,7 @@ back-end
   MYSQL_DB_NAME=delivery-app
   EVAL_ALWAYS_RESTORE_DEV_DB=true
 ```
-front-end
+- .env Front-end
 ```
 #NÃO ALTERAR
 ESLINT_NO_DEV_ERRORS=true
