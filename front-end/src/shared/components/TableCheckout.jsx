@@ -18,8 +18,8 @@ export default function TableCheckout() {
 
   useEffect(() => {
     async function setCart() {
-      if (userCart.length === 0) {
-        const shopCart = JSON.parse(localStorage.getItem('carrinho'));
+      const shopCart = JSON.parse(localStorage.getItem('carrinho'));
+      if (userCart.length === 0 && shopCart !== null) {
         setUserCart(shopCart);
       }
     }
