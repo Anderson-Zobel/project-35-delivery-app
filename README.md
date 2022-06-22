@@ -62,14 +62,18 @@
 ## 💻 Rodando localmente
 
 1. Recomendo uso de Docker para o bando de dados, com docker instalado use o comando abaixo
-- `docker container run -d -p 3306:3306 --name mysql --env MYSQL_ROOT_PASSWORD=SuaSenhaAqui mysql`
+```
+docker container run -d -p 3306:3306 --name mysql --env MYSQL_ROOT_PASSWORD=SuaSenhaAqui mysql
+```
 
 2. Instalação de dependências tem que tanto ser feita na pasta raíz quanto nas pastas de front-end e back-end, rode respectivamente o mesmo comando.
-- `npm install`
+```
+npm install
+```
 
 3. Configurando as variáveis de ambiente, abaixo o que vem no arquivo .env.example, renomeio para .env e configure as suas variáveis para rodar corretamente a aplicação.
-- back-end
-  ```
+back-end
+```
   NODE_ENV=development 
   API_PORT=3001
   MYSQL_HOST=localhost
@@ -79,8 +83,7 @@
   MYSQL_DB_NAME=delivery-app
   EVAL_ALWAYS_RESTORE_DEV_DB=true
 ```
-
-- front-end
+front-end
 ```
 #NÃO ALTERAR
 ESLINT_NO_DEV_ERRORS=true
@@ -90,8 +93,9 @@ SKIP_PREFLIGHT_CHECK=true
 REACT_APP_HOSTNAME=localhost
 REACT_APP_BACKEND_PORT=3001
 ```
-4. Rodando a aplicação terá tela de login, como base já existem alguns usuários cadastrados e seus respectivos privilégios, basta usar algum deles para efetuar login.
 
+4. Rodando a aplicação terá tela de login, como base já existem alguns usuários cadastrados e seus respectivos privilégios, basta usar algum deles para efetuar login.
+```
 - Customer - Cliente Zé Birita
   - email: zebirita@email.com senha: $#zebirita#$
 
@@ -100,7 +104,7 @@ REACT_APP_BACKEND_PORT=3001
 
 - Admin - Delivery App Admin 
   - email: adm@deliveryapp.com senha: --adm2@21!!--
-
+```
 
 <!-- ## 💻 Deploy
  - [Delivery-APP]() -->
