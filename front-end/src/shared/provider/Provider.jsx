@@ -52,37 +52,31 @@ export default function Provider({ children }) {
     }
   };
 
-  const removeProductCart = (id, count) => {
-    const cart = [...userCart];
-    const item = cart.find((p) => p.id === id);
-    if (item && item.count > 1 && count !== 0) {
-      item.count = count;
-      setUserCart(cart);
-      const cartStringFy = JSON.stringify(cart);
-
-      localStorage.setItem('carrinho', cartStringFy);
+  const removeProductsById = (id) => {
+    const cartFiltered = userCart.filter((p) => p.id !== id);
+    setUserCart(cartFiltered);
+    if (cartFiltered.length === 0) {
+      setDisableCartButton(true);
+      localStorage.removeItem('carrinho');
     } else {
-      const cartFiltered = cart.filter((p) => p.id !== id);
-      setUserCart(cartFiltered);
-      if (cartFiltered.length === 0) {
-        setDisableCartButton(true);
-        localStorage.removeItem('carrinho');
-      } else {
-        const cartStringFy = JSON.stringify(cartFiltered);
-        localStorage.setItem('carrinho', cartStringFy);
-      }
+      const cartStringFy = JSON.stringify(cartFiltered);
+      localStorage.setItem('carrinho', cartStringFy);
     }
   };
 
-  const removeProductsById = (id) => {
-    const cartFiltered = userCart.filter((p) => p.id !== id);
-    const cartStringFy = JSON.stringify(cartFiltered);
-    localStorage.setItem('carrinho', cartStringFy);
-    setUserCart(cartFiltered);
+  const removeProductCart = (id, count) => {
+    const item = userCart.find((p) => p.id === id);
+    if (item && item.count > 1 && count !== 0) {
+      item.count = count;
+      localStorage.setItem('carrinho', JSON.stringify(userCart));
+    } else {
+      removeProductsById(id);
+    }
   };
 
   const clearCart = () => {
     setUserCart([]);
+    localStorage.removeItem('carrinho');
   };
 
   const myProvider = {
