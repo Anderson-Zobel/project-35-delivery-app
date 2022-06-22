@@ -73,8 +73,12 @@ SKIP_PREFLIGHT_CHECK=true
 REACT_APP_HOSTNAME=localhost
 REACT_APP_BACKEND_PORT=3001
 ```
+4. Para rodar a apliação rode o seguinte comando na diretório raiz
+```
+npm start
+```
 
-4. Rodando a aplicação terá tela de login, como base já existem alguns usuários cadastrados e seus respectivos privilégios, basta usar algum deles para efetuar login.
+5. Rodando a aplicação terá tela de login, como base já existem alguns usuários cadastrados e seus respectivos privilégios, basta usar algum deles para efetuar login.
 ```
 - Customer - Cliente Zé Birita
   - email: zebirita@email.com senha: $#zebirita#$
@@ -91,3 +95,5 @@ REACT_APP_BACKEND_PORT=3001
 
 <!-- ## 📺 Preview do Projeto
 ![]() -->
+
+5. Para rodar a apli
