@@ -15,35 +15,15 @@
 ## 🧰 Tecnologias  
 
 **Fullstack**
-<div style="display: inline_block">
+<div style="display: inline_block"><br>
  
-   
-  <img align="center" alt="HTML" width="30" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" />
-   &nbsp;&nbsp;
-   
-  <img align="center" alt="CSS" width="30"  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" />
-   &nbsp;&nbsp;
-   
-  <img align="center" alt="JS" width="30"      src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" />
-   &nbsp;&nbsp;
-
-  <img align="center" alt="REACT" width="30"   src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" />&nbsp;&nbsp;
-
-  <img align="center" alt="MUI" width="30" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/materialui/materialui-original.svg" />
-   &nbsp;&nbsp;
-
-  <img align="center" alt="NODEJS" width="30" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original-wordmark.svg" />
-   &nbsp;&nbsp;
-
-  <img align="center" alt="MYSQL" width="30" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original-wordmark.svg" />
-  &nbsp;&nbsp;
-
-  <img align="center" alt ="MYSQL" width="30" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" />
-  &nbsp;&nbsp;
-
-  <img align="center" alt ="SEQUELIZE" width="30"  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sequelize/sequelize-original.svg" />
-
-  &nbsp;&nbsp;
+  <img align="center" alt="JS" width="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" />&nbsp;&nbsp;
+  <img align="center" alt="REACT" width="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" />&nbsp;&nbsp;
+  <img align="center" alt="MUI" width="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/materialui/materialui-original.svg" />&nbsp;&nbsp;
+  <img align="center" alt="NODEJS" width="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" />&nbsp;&nbsp;
+  <img align="center" alt="MYSQL" width="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" />&nbsp;&nbsp;
+  <img align="center" alt ="EXPRESS" width="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" />&nbsp;&nbsp;
+  <img align="center" alt ="SEQUELIZE" width="50"  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sequelize/sequelize-original.svg" />&nbsp;&nbsp;
  
 </div>
 
