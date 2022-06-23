@@ -28,7 +28,7 @@
 </div>
 
 ## 👷‍♂️ Desenvolvimento:
-- Projeto Final de Front-end realizado na [Trybe](https://www.betrybe.com/)<br>
+- Projeto Final de Fullstack realizado na [Trybe](https://www.betrybe.com/)<br>
 - Realizado em grupo
 - Integrantes do Grupo:<br>
 &ensp;[Anderson Zobel](https://github.com/Anderson-Zobel)<br>
