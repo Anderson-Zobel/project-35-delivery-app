@@ -2,7 +2,7 @@
 ## 📖 Sobre
 
 - A proposta desse projeto era desenvolver uma aplicação delivery de bebidas, utilizando Reactjs, Nodejs, MySQL.<br>
-- Os recursos disponíveis são relacionados ao tipo de usuario que efetua login na aplicação.<br>
+- Os recursos disponíveis são relacionados ao tipo de usuário que efetua login na aplicação.<br>
 - São 3 definições de usuários: Customer, Seller e Administrator.
   - customer: pode fazer pedidos adicionando produtos ao carrinho e efetuando checkout.
   - Seller: tem acesso aos pedidos relacionados ao seu nome, podendo editar.
@@ -97,4 +97,4 @@ npm start
 <!-- ## 📺 Preview do Projeto
 ![]() -->
 
-5. Para rodar a apli
+
