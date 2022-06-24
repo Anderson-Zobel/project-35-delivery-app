@@ -97,4 +97,7 @@ npm start
 <!-- ## 📺 Preview do Projeto
 ![]() -->
 
+## :exclamation: Observações:
+  - Ainda estou mexendo no projeto, seja nas estilizações ou refatorando o código em si.
+
 
