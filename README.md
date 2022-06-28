@@ -39,7 +39,7 @@
 ## 🏃 Habilidades
  - Criar e integrar tanto o back-end quanto o front-end, criando uma plataforma de delivery de cerveja
 
-## 💻 Rodando localmente
+## 💻 Rodando localmente (Linux ou Mac)
 
 1. Recomendo uso de Docker para o bando de dados, com docker instalado use o comando abaixo
 ```
