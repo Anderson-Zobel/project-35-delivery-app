@@ -40,6 +40,7 @@
  - Criar e integrar tanto o back-end quanto o front-end, criando uma plataforma de delivery de cerveja
 
 ## 💻 Rodando localmente (Linux ou Mac)
+Obs.: Se quiser rodar no ambiente windows, recomendo usar WSL
 
 1. Recomendo uso de Docker para o bando de dados, com docker instalado use o comando abaixo
 ```
